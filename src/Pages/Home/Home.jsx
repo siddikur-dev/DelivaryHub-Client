@@ -26,12 +26,12 @@ const Home = () => {
       <section>
         <KeyFeature />
       </section>
-      <section>
-        <DeviceSupport />
-      </section>
 
       <section>
         <CustomerReview />
+      </section>
+      <section>
+        <DeviceSupport />
       </section>
     </>
   );

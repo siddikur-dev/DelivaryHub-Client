@@ -1,128 +1,149 @@
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { MdFormatQuote, MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-import { Slide } from "react-awesome-reveal";
+import "swiper/css/pagination";
+import customerTop from "../../../assets/Project/customer-top.png";
+import { FaQuoteLeft } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 const reviews = [
-	{
-		name: "Sadia Rahman",
-		location: "Dhaka, Bangladesh",
-		img: "https://i.pravatar.cc/100?img=11",
-		text: "Foodio has made it so easy to enjoy my favorite meals at home. The service is fast and always reliable.",
-	},
-	{
-		name: "Arif Chowdhury",
-		location: "Chittagong, Bangladesh",
-		img: "https://i.pravatar.cc/100?img=12",
-		text: "I love the freshness and variety Foodio offers. It’s my go-to for quick, delicious food!",
-	},
-	{
-		name: "Maya Sultana",
-		location: "Sylhet, Bangladesh",
-		img: "https://i.pravatar.cc/100?img=13",
-		text: "Every order is packed with care and arrives hot. Foodio never disappoints!",
-	},
-	{
-		name: "Tanvir Hasan",
-		location: "Rajshahi, Bangladesh",
-		img: "https://i.pravatar.cc/100?img=14",
-		text: "Great customer support and easy-to-use app. Foodio makes ordering food a breeze.",
-	},
-	{
-		name: "Nusrat Jahan",
-		location: "Khulna, Bangladesh",
-		img: "https://i.pravatar.cc/100?img=15",
-		text: "The best food delivery experience I’ve had. Highly recommended!",
-	},
+  {
+    name: "Awlad Hossin",
+    role: "Senior Product Designer",
+    feedback:
+      "ProFast Courier has made my e-commerce deliveries seamless and reliable. The real-time tracking and fast delivery give me and my customers peace of mind.",
+    avatar: "https://i.pravatar.cc/100?img=14",
+  },
+  {
+    name: "Rasel Ahamed",
+    role: "CTO",
+    feedback:
+      "Their 24/7 support and safe delivery process are unmatched. I trust ProFast for all my business shipments across Bangladesh.",
+    avatar: "https://i.pravatar.cc/100?img=15",
+  },
+  {
+    name: "Nasir Uddin",
+    role: "CEO",
+    feedback:
+      "The best courier service for startups! Affordable, fast, and always on time. Highly recommended for anyone looking for hassle-free logistics.",
+    avatar: "https://i.pravatar.cc/100?img=16",
+  },
+  {
+    name: "Sumaiya Rahman",
+    role: "Online Seller",
+    feedback:
+      "I love how easy it is to book and track parcels. My customers are always happy with the quick delivery and safe handling.",
+    avatar: "",
+  },
+  {
+    name: "Tanvir Hasan",
+    role: "Merchant",
+    feedback:
+      "ProFast Courier has helped my business grow with their reliable service and excellent customer support.",
+    avatar: "",
+  },
 ];
 
 const CustomerReview = () => {
-	return (
-		<section className="max-w-7xl mx-auto px-4 pb-8 md:pb-16 lg:pb-24">
-			<div className="mb-12">
-				<Slide direction="right">
-					<h2 className="text-center text-3xl md:text-4xl font-bold text-primary mb-4">
-						What Our  
-						<span className="text-secondary border-b-2 border-secondary">
-							{" "} Customers {" "}
-						</span>
-							Are Saying
-					</h2>
-				</Slide>
-				<Slide direction="left">
-					<p className="text-center text-accent mb-10 max-w-2xl mx-auto">
-						Discover real stories and honest feedback from people who use Foodio
-						every day. Your experience matters to us!
-					</p>
-				</Slide>
-			</div>
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-				{/* Left: Title, Subtitle, Arrows */}
-				<div className="flex flex-col items-start md:items-center">
-					<h3 className="text-2xl md:text-3xl font-bold text-primary mb-2">
-						From our{" "}
-						<span className="text-secondary">community</span>
-					</h3>
-					<p className="text-accent mb-8 max-w-xs">
-						See what our customers are saying about their Foodio experience.
-					</p>
-					<div className="flex gap-3">
-						<button className="swiper-button-prev-custom w-10 h-10 flex items-center justify-center rounded-full pl-2 border border-secondary hover:bg-secondary/10 transition">
-							<MdArrowBackIos size={20} />
-						</button>
-						<button className="swiper-button-next-custom w-10 h-10 flex items-center justify-center rounded-full border border-secondary hover:bg-secondary/10 transition">
-							<MdArrowForwardIos size={20} />
-						</button>
-					</div>
-				</div>
-				{/* Right: Swiper Review */}
-				<div>
-					<Swiper
-						modules={[Navigation, Autoplay]}
-						navigation={{
-							prevEl: ".swiper-button-prev-custom",
-							nextEl: ".swiper-button-next-custom",
-						}}
-						slidesPerView={1}
-						loop={true}
-						autoplay={{ delay: 3500, disableOnInteraction: false }}
-						speed={700}
-						className="w-full"
-					>
-						{reviews.map((review, idx) => (
-							<SwiperSlide key={idx}>
-								<div className="bg-base-100/90 p-0 md:p-4 flex flex-col items-start">
-									<span className="text-3xl text-secondary font-serif mb-4">
-										<MdFormatQuote />
-									</span>
-									<p className="text-2xl md:text-3xl font-medium text-accent mb-6 leading-snug">
-										{review.text}
-									</p>
-									<div className="flex items-center gap-3 mt-2">
-										<img
-											src={review.img}
-											alt={review.name}
-											className="w-10 h-10 rounded-full border border-secondary"
-										/>
-										<div>
-											<p className="font-semibold text-primary leading-tight">
-												{review.name}
-											</p>
-											<p className="text-xs text-accent leading-tight">
-												{review.location}
-											</p>
-										</div>
-									</div>
-								</div>
-							</SwiperSlide>
-						))}
-					</Swiper>
-				</div>
-			</div>
-		</section>
-	);
+  return (
+    <section className="bg-[#f3f5f6] py-12 px-2 md:px-0">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col items-center mb-6">
+          <img
+            src={customerTop}
+            alt="Customer Feedback"
+            className="h-16 md:h-20 mb-2"
+          />
+          <h2 className="text-[#184042] text-2xl md:text-3xl font-bold text-center mb-2">
+            What our customers are sayings
+          </h2>
+          <p className="text-gray-500 text-center max-w-2xl mx-auto mb-4 text-base md:text-lg">
+            Enhance posture, mobility, and well-being effortlessly with ProFast
+            Courier. Achieve proper alignment, reduce pain, and strengthen your
+            business with ease!
+          </p>
+        </div>
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          slidesPerView={3}
+          centeredSlides={true}
+          spaceBetween={30}
+          loop={true}
+          navigation={{
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+          }}
+          pagination={{
+            clickable: true,
+            el: ".custom-swiper-pagination",
+            renderBullet: (index, className) =>
+              `<span class='${className} custom-bullet'></span>`,
+          }}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          className="pb-10"
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            640: { slidesPerView: 1 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+          {reviews.map((review, idx) => (
+            <SwiperSlide key={idx}>
+              {({ isActive }) => (
+                <div
+                  className={`rounded-2xl bg-white px-6 py-8 h-full flex flex-col justify-between shadow-sm transition-all duration-300 ${
+                    isActive
+                      ? "scale-105 shadow-lg z-10"
+                      : "opacity-40 scale-95"
+                  }`}
+                >
+                  <FaQuoteLeft className="text-[#b6e0e2] text-3xl mb-2" />
+                  <p className="text-gray-600 text-base mb-6">
+                    {review.feedback}
+                  </p>
+                  <hr className="border-dashed border-[#18404233] border-t-2 mb-4" />
+                  <div className="flex items-center gap-3">
+                    {review.avatar ? (
+                      <img
+                        src={review.avatar}
+                        alt={review.name}
+                        className="h-10 w-10 rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="h-10 w-10 rounded-full bg-[#184042] flex items-center justify-center text-white font-bold text-lg">
+                        {review.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </div>
+                    )}
+                    <div>
+                      <div className="font-bold text-[#184042]">
+                        {review.name}
+                      </div>
+                      <div className="text-gray-400 text-sm">{review.role}</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        {/* Custom navigation and pagination */}
+        <div className="flex items-center gap-4 mt-6 w-2/8 mx-auto ">
+          <button className="swiper-prev w-8 h-8 rounded-full bg-secondary border border-gray-300 flex items-center justify-center text-sm text-[#184042] hover:bg-gray-100">
+            <FaArrowLeft size={12} />
+          </button>
+          <div className="custom-swiper-pagination flex gap-2"></div>
+          <button className="swiper-next w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-sm text-[#184042] hover:bg-lime-400">
+            <FaArrowRight size={12} />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default CustomerReview;
