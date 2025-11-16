@@ -20,8 +20,9 @@ const icons = [
 
 const OurServices = () => {
   return (
-    <section className="bg-[#0d3c3f] rounded-3xl py-12 px-4 md:px-10 my-15">
-      <h2 className="text-white text-3xl md:text-4xl font-bold text-center mb-2">
+    <section className="bg-[#0d3c3f] rounded-3xl  my-15 ">
+   <div className="container mx-auto py-10 px-8">
+       <h2 className="text-white text-3xl md:text-4xl font-bold text-center mb-2">
         Our Services
       </h2>
       <p className="text-[#b6e0e2] text-center max-w-2xl mx-auto mb-10 text-base md:text-lg">
@@ -51,6 +52,7 @@ const OurServices = () => {
           </div>
         ))}
       </div>
+   </div>
     </section>
   );
 };

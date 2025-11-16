@@ -2,9 +2,10 @@ import React from "react";
 import HeroSlider from "./HeroSlider";
 import OurServices from "./OurServices";
 import HowItWorks from "./HowItWorks";
-// import CallToAction from './CallToAction';
+// import OurClients from './OurClients';
 import DeviceSupport from "./DeviceSupport";
 import CustomerReview from "./CustomerReview";
+import OurClients from "./OurClients";
 
 const Home = () => {
   return (
@@ -19,12 +20,12 @@ const Home = () => {
         <OurServices />
       </section>
       <section>
+        <OurClients />
+      </section>
+      <section>
         <DeviceSupport />
       </section>
 
-      {/* <section>
-                <CallToAction/>
-            </section> */}
       <section>
         <CustomerReview />
       </section>

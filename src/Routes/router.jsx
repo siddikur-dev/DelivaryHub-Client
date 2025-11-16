@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import ErrorPage from "../pages/ErrorPage";
-import Home from "../pages/home/Home";
+
 import Login from "../pages/Login";
 import AllFoods from "../pages/AllFoods/AllFoods";
 import SignUp from "../pages/SignUp";
@@ -20,6 +20,7 @@ import MyFoodsFromApi from "../pages/MyFoods/MyFoodsFromApi";
 import TermsAndConditions from "../pages/TermsAndConditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Contact from "../pages/Contact";
+import Home from "../Pages/Home/Home";
 
 const router = createBrowserRouter([
   {
@@ -43,8 +44,7 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             {" "}
-            <MyProfile />
-            {" "}
+            <MyProfile />{" "}
           </PrivateRoutes>
         ),
       },
