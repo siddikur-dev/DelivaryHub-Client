@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+    themes: light --default;
+}
+
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+
+    /* 🎨 Toy Universe Minimal Light Theme */
+    --color-primary: #e85a4f;
+    /* Coral Red */
+    --color-secondary: #E6BE4C;
+    /* Soft Yellow */
+    --bg-base-100: #FFF8F0;
+    /* Warm off-white background */
+}
+
+@plugin "daisyui/theme" {
+    name: "dark";
+
+    /* 🌙 Toy Universe Dark Theme */
+    --color-primary: #bf382c;
+    /* Slightly softer coral for dark mode */
+    --color-secondary: #FFDD6E;
+    /* Gentle yellow tone */
+    --bg-base-100: #1A1B27;
+    /* Deep navy background */
+}
+
+a.active {
+    color: #bf382c;
+    /* Highlight active links with primary */
+}
