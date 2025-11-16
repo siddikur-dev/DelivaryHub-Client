@@ -63,11 +63,11 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar rounded-xl px-4 md:px-8 py-3 shadow-sm">
+    <div className="navbar rounded-xl px-4 md:px-8 py-3 shadow-sm container mx-auto">
       {/* Left Side - Logo and Brand */}
       <div className="flex items-center">
         <DeliveryLogo />
-        <span className="ml-2 text-xl font-bold">DeliveryHub</span>
+        {/* <span className="ml-2 text-xl font-bold">DeliveryHub</span> */}
       </div>
 
       {/* Center - Navigation Links */}
@@ -158,7 +158,7 @@ const NavBar = () => {
                   <li>
                     <Link
                       to="/signup"
-                      className="btn btn-primary btn-outline w-full rounded-md text-white"
+                      className="btn-secondary btn btn-outline w-full rounded-md  text-black"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Sign Up
@@ -169,7 +169,7 @@ const NavBar = () => {
               <li>
                 <Link
                   to="/be-a-rider"
-                  className="flex items-center justify-center text-black bg-primary px-3 py-2 rounded-md"
+                  className="flex items-center justify-center text-black btn-secondary btn px-3 py-2 rounded-md"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Be a Rider <FaArrowRight className="ml-1" />
