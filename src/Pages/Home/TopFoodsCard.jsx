@@ -3,7 +3,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 import { FaHeart, FaRegHeart, FaStar, FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router";
 
-const TopFoodsCard = ({ food }) => {
+const OurServicesCard = ({ food }) => {
   const [fav, setFav] = useState(false);
   return (
     <Fade duration={1000}>
@@ -73,4 +73,4 @@ const TopFoodsCard = ({ food }) => {
   );
 };
 
-export default TopFoodsCard;
+export default OurServicesCard;

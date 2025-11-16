@@ -1,6 +1,6 @@
 import React from "react";
 import HeroSlider from "./HeroSlider";
-import TopFoods from "./TopFoods";
+import OurServices from "./OurServices";
 import HowItWorks from "./HowItWorks";
 // import CallToAction from './CallToAction';
 import DeviceSupport from "./DeviceSupport";
@@ -16,7 +16,7 @@ const Home = () => {
         <HowItWorks />
       </section>
       <section>
-        <TopFoods />
+        <OurServices />
       </section>
       <section>
         <DeviceSupport />
