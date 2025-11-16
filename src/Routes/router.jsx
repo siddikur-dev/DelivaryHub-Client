@@ -9,18 +9,17 @@ import MyProfile from "../pages/MyProfile";
 import AddFoodsForm from "../pages/AddFoods/AddFoodsForm";
 import FoodDetails from "../pages/FoodDetails";
 import Spinner from "../pages/shared/Spinner";
-// import MyFoods from "../pages/MyFoods/MyFoods";
 import EditFood from "../pages/EditFood/EditFood";
 import Gallery from "../pages/Gallery/Gallery";
 import PrivateRoutes from "./PrivateRoutes";
 import FoodPurchase from "../pages/FoodPurchase/FoodPurchase";
-// import MyOrders from "../pages/MyOrders/MyOrders";
 import OrdersFromApi from "../pages/MyOrders/OrdersFromApi";
 import MyFoodsFromApi from "../pages/MyFoods/MyFoodsFromApi";
 import TermsAndConditions from "../pages/TermsAndConditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Contact from "../pages/Contact";
 import Home from "../Pages/Home/Home";
+import Coverage from "../Pages/Coverage/Coverage";
 
 const router = createBrowserRouter([
   {
@@ -49,10 +48,9 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/all-foods",
-        hydrateFallbackElement: <Spinner />,
-        loader: () => fetch(`${import.meta.env.VITE_API_URL}/foods`),
-        Component: AllFoods,
+        path: "/coverage",
+        loader:()=>fetch('/data/serviceCenter.json'),
+        Component: Coverage,
       },
       {
         path: "/item-details/:id",
