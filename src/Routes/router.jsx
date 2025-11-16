@@ -2,13 +2,11 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import ErrorPage from "../pages/ErrorPage";
 
-import Login from "../pages/Login";
-import AllFoods from "../pages/AllFoods/AllFoods";
+import Login from "../Pages/Authentication/Login";
 import SignUp from "../pages/SignUp";
 import MyProfile from "../pages/MyProfile";
 import AddFoodsForm from "../pages/AddFoods/AddFoodsForm";
 import FoodDetails from "../pages/FoodDetails";
-import Spinner from "../pages/shared/Spinner";
 import EditFood from "../pages/EditFood/EditFood";
 import Gallery from "../pages/Gallery/Gallery";
 import PrivateRoutes from "./PrivateRoutes";
@@ -20,6 +18,8 @@ import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Contact from "../pages/Contact";
 import Home from "../Pages/Home/Home";
 import Coverage from "../Pages/Coverage/Coverage";
+import Spinner from "../pages/shared/Spinner";
+import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -30,14 +30,7 @@ const router = createBrowserRouter([
         path: "/",
         Component: Home,
       },
-      {
-        path: "login",
-        Component: Login,
-      },
-      {
-        path: "signup",
-        Component: SignUp,
-      },
+
       {
         path: "my-profile",
         element: (
@@ -49,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/coverage",
-        loader:()=>fetch('/data/serviceCenter.json'),
+        loader: () => fetch("/data/serviceCenter.json"),
         Component: Coverage,
       },
       {
@@ -125,6 +118,20 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         Component: Contact,
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    Component: AuthLayout,
+    children: [
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "signup",
+        Component: SignUp,
       },
     ],
   },

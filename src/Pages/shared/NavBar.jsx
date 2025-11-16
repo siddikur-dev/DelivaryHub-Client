@@ -94,7 +94,7 @@ const NavBar = () => {
         ) : (
           <div className="flex items-center space-x-2">
             <Link
-              to="/login"
+              to="/auth/login"
               className="btn btn-secondary btn-outline rounded-md text-primary"
             >
               Sign In
