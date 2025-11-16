@@ -6,6 +6,7 @@ import HowItWorks from "./HowItWorks";
 import DeviceSupport from "./DeviceSupport";
 import CustomerReview from "./CustomerReview";
 import OurClients from "./OurClients";
+import KeyFeature from "./KeyFeature";
 
 const Home = () => {
   return (
@@ -21,6 +22,9 @@ const Home = () => {
       </section>
       <section>
         <OurClients />
+      </section>
+      <section>
+        <KeyFeature />
       </section>
       <section>
         <DeviceSupport />
