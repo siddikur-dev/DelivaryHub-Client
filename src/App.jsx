@@ -1,7 +1,12 @@
-import "./App.css";
+import './App.css'
 
 function App() {
-  return <>Assalamu Alaikum</>;
+
+  return (
+    <>
+      <h2 className='text-secondary font-bebas-font'>App</h2>
+    </>
+  )
 }
 
-export default App;
+export default App

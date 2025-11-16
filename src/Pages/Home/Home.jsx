@@ -1,20 +1,34 @@
-import React from "react";
-import AllToys from "../../Component/Toys/AllToys";
-import Slider from "../../Component/Slider/Slider";
-import Review from "../Review/Review";
-import Newsletter from "../Newsletter/Newsletter";
+import React from 'react';
+import HeroSlider from './HeroSlider';
+import TopFoods from './TopFoods';
+import HowItWorks from './HowItWorks';
+// import CallToAction from './CallToAction';
+import DeviceSupport from './DeviceSupport';
+import CustomerReview from './CustomerReview';
 
 const Home = () => {
-  return (
-    <div>
-      <Slider></Slider>
-
-      {/*  */}
-      <AllToys></AllToys>
-      <Review />
-      <Newsletter></Newsletter>
-    </div>
-  );
+    return (
+        <>
+            <section>
+                <HeroSlider />
+            </section>
+            <section>
+                <TopFoods />
+            </section>
+            <section>
+                <DeviceSupport/>
+            </section>
+            <section>
+                <HowItWorks/>
+            </section>
+            {/* <section>
+                <CallToAction/>
+            </section> */}
+            <section>
+                <CustomerReview />
+            </section>
+        </>
+    );
 };
 
 export default Home;

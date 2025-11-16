@@ -1,35 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 @plugin "daisyui" {
     themes: light --default;
 }
-
 @plugin "daisyui/theme" {
     name: "light";
     default: true;
+    --color-primary: #03373D;
+    --color-secondary: #CAEB66;
+    --color-base-100: #ffffff;
+    --color-base-300: #E7E7E7;
+    --color-accent: #606060;
+  }
 
-    /* 🎨 Toy Universe Minimal Light Theme */
-    --color-primary: #e85a4f;
-    /* Coral Red */
-    --color-secondary: #E6BE4C;
-    /* Soft Yellow */
-    --bg-base-100: #FFF8F0;
-    /* Warm off-white background */
+.font-urbanist {
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
 }
 
-@plugin "daisyui/theme" {
-    name: "dark";
-
-    /* 🌙 Toy Universe Dark Theme */
-    --color-primary: #bf382c;
-    /* Slightly softer coral for dark mode */
-    --color-secondary: #FFDD6E;
-    /* Gentle yellow tone */
-    --bg-base-100: #1A1B27;
-    /* Deep navy background */
+nav a.active {
+  background: #CAEB66;
+  border-radius: 25px;
 }
+/* nav a:hover{
+  color: #CAEB66;
+} */
 
-a.active {
-    color: #bf382c;
-    /* Highlight active links with primary */
+/* custom swiper css */
+
+/* .custom-swiper-pagination .custom-bullet {
+	width: 8px;
+	height: 8px;
+	border-radius: 9999px;
+	background-color: #cbd5e1;
+	opacity: 0.6;
+	transition: all 0.3s;
+}
+.custom-swiper-pagination .swiper-pagination-bullet-active.custom-bullet {
+	width: 10px;
+	height: 10px;
+	background-color: #184042;
+	opacity: 1;
+} */
+
+.custom-swiper-pagination .custom-bullet {
+	width: 8px;
+	height: 8px;
+	border-radius: 9999px;
+	background-color: #cbd5e1; /* light slate */
+	opacity: 0.6;
+	transition: all 0.3s;
+}
+.custom-swiper-pagination .swiper-pagination-bullet-active.custom-bullet {
+	width: 10px;
+	height: 10px;
+	background-color: #184042; /* dark primary */
+	opacity: 1;
 }
