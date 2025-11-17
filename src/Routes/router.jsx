@@ -15,6 +15,7 @@ import Coverage from "../Pages/Coverage/Coverage";
 import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import BeARider from "../Pages/BeARider/BeARider";
 import SignUp from "../Pages/SignUp";
+import SendParcel from "../Pages/SendParcel/SendParcel";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
         loader: () => fetch("/data/serviceCenter.json"),
         Component: Coverage,
       },
-     
+
       {
         path: "my-orders",
         element: (
@@ -51,11 +52,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "my-foods",
+        path: "/send-parcel",
         element: (
           <PrivateRoutes>
-            {" "}
-            <MyFoodsFromApi />{" "}
+            <SendParcel></SendParcel>
           </PrivateRoutes>
         ),
       },
@@ -67,8 +67,8 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
-   
-    {
+
+      {
         path: "/gallery",
         element: <Gallery />,
       },

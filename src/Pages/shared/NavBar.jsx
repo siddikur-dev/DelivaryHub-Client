@@ -63,9 +63,9 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar rounded-xl px-4 md:px-8 py-3 shadow-sm container mx-auto">
+    <div className="navbar rounded-xl px-4 md:px-8 py-3 shadow-sm container mx-auto ">
       {/* Left Side - Logo and Brand */}
-      <div className="flex items-center">
+      <div className="">
         <DeliveryLogo />
         {/* <span className="ml-2 text-xl font-bold">DeliveryHub</span> */}
       </div>
