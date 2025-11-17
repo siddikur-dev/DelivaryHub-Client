@@ -22,7 +22,7 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         Swal.fire({
-          icon: "success",
+          icon: "Success",
           title: "Logged In Successfully!",
           showConfirmButton: false,
           timer: 1500,
@@ -54,8 +54,8 @@ const Login = () => {
   };
 
   return (
-    <div className="">
-      <div className="bg-white p-10">
+    <div className=" py-20 px-12">
+      <div className="border-secondary/30 shadow-md border-2 p-10 ">
         <h2 className="text-3xl font-bold mb-2">Welcome Back</h2>
         <p className="text-sm text-accent mb-6">Login with Profast</p>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -68,7 +68,7 @@ const Login = () => {
               type="email"
               {...register("email", { required: true })}
               placeholder="Email"
-              className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+              className="input input-bordered w-full rounded-3xl focus:outline-none focus:ring-1 focus:ring-secondary"
             />
             {errors.email?.type === "required" && (
               <p className="text-red-500 text-sm mt-1">Email is required</p>
@@ -85,8 +85,10 @@ const Login = () => {
               type="password"
               {...register("password", { required: true, minLength: 6 })}
               placeholder="Type your password"
-              className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
+              className="input input-bordered w-full rounded-3xl focus:outline-none focus:ring-1 focus:ring-secondary"
             />
+                  
+              
             {errors.password?.type === "required" && (
               <p className="text-red-500 text-sm mt-1">Password is required</p>
             )}
@@ -104,14 +106,14 @@ const Login = () => {
             Forget Password?
           </Link>
 
-          <button className="btn btn-secondary w-full rounded-md text-primary font-semibold mb-4">
+          <button className="btn btn-secondary text-white w-full rounded-3xl mt-4">
             Continue
           </button>
 
           <div className="text-sm text-accent text-center">
             Don't have any account?{" "}
             <Link
-              to="/register"
+              to="/auth/signup"
               className="text-secondary hover:underline cursor-pointer"
             >
               Register
@@ -119,12 +121,12 @@ const Login = () => {
           </div>
 
           <div className="divider my-4">Or</div>
-
           <button
             onClick={handleGoogleSignIn}
-            className="btn w-full bg-base-200 hover:bg-base-300"
+            className="btn btn-outline hover:bg-secondary/15 border-secondary w-full rounded-3xl"
           >
-            <FcGoogle className="text-xl mr-2" /> Login with Google
+            <FcGoogle />
+            Continue with Google
           </button>
         </form>
       </div>

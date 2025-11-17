@@ -100,7 +100,7 @@ const NavBar = () => {
               Sign In
             </Link>
             <Link
-              to="/signup"
+              to="/auth/signup"
               className="btn  btn-secondary btn-outline rounded-md text-black"
               onClick={() => setIsMenuOpen(false)}
             >

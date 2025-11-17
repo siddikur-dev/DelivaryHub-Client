@@ -5,7 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import Spinner from "./shared/Spinner";
 import Swal from "sweetalert2";
-import signupLottie from "../assets/lotties/signup-lottie.json";
+// import signupLottie from "../assets/lotties/signup-lottie.json";
 import Lottie from "lottie-react";
 
 const SignUp = () => {
@@ -75,45 +75,44 @@ const SignUp = () => {
   };
 
   const handleSignUp = (e) => {
-      e.preventDefault();
-      const newErrors = validate();
-      setErrors(newErrors);
-      if (Object.keys(newErrors).length > 0) {
-          if (newErrors.password) setShowValidation(true);
-          return;
-      }
+    e.preventDefault();
+    const newErrors = validate();
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) {
+      if (newErrors.password) setShowValidation(true);
+      return;
+    }
 
-      createUser(form.email, form.password)
-          .then((userCredential) => {
-              const currentUser = userCredential.user;
-              updateUser({ displayName: form.name, photoURL: form.photo })
-                  .then(() => {
-                      const updatedUser = {
-                          ...currentUser,
-                          displayName: form.name,
-                          photoURL: form.photo,
-                      };
-                      setUser(updatedUser);
-                      Swal.fire({
-                          position: "center",
-                          icon: "success",
-                          title: "Sign Up Success!",
-                          showConfirmButton: false,
-                          timer: 1500,
-                      });
-                       navigate(location.state || '/');
-                  })
-                  .catch((error) => {
-                      console.log("Update failed", error);
-                      Swal.fire({
-                          icon: "error",
-                          title: "Oops...",
-                          text: `${error.message} || Something went wrong!`,
-                      });
-                  });
+    createUser(form.email, form.password)
+      .then((userCredential) => {
+        const currentUser = userCredential.user;
+        updateUser({ displayName: form.name, photoURL: form.photo })
+          .then(() => {
+            const updatedUser = {
+              ...currentUser,
+              displayName: form.name,
+              photoURL: form.photo,
+            };
+            setUser(updatedUser);
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Sign Up Success!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate(location.state || "/");
           })
           .catch((error) => {
-
+            console.log("Update failed", error);
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `${error.message} || Something went wrong!`,
+            });
+          });
+      })
+      .catch((error) => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -126,7 +125,6 @@ const SignUp = () => {
         }));
       });
   };
-
 
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -169,15 +167,10 @@ const SignUp = () => {
   }
 
   return (
-    <div className="mt-16 max-w-5xl py-10 md:py-20 mx-auto flex flex-col md:flex-row">
-      <title>Roomly | New User Registration</title>
-      {/* Left Column Image */}
-      <div className="flex-1 flex items-center justify-center p-4 w-11/12 lg:w-full mx-auto">
-      <Lottie animationData={signupLottie} ></Lottie>
-      </div>
-      {/* Right Column (Form) */}
-      <div className="flex-1 w-full flex items-center justify-center p-8">
-        <div className="w-full max-w-md border-2 p-4 md:p-6 lg:p-8 rounded-xl border-secondary/30 shadow-md">
+    <div className=" ">
+      <title>Delivery Hub | New User Registration</title>
+      <div className="py-20 px-12 ">
+        <div className="w-full border-2 p-4 md:p-6 lg:p-8 rounded-xl border-secondary/30 shadow-md">
           <h2 className="text-3xl text-primary font-bold mb-6 text-center">
             Sign Up
           </h2>
@@ -342,7 +335,7 @@ const SignUp = () => {
           {/* Sign Up Link */}
           <p className="mt-4 text-center text-sm text-gray-500">
             Already have an account?{" "}
-            <Link to="/login" className="text-secondary font-medium">
+            <Link to="/auth/login" className="text-secondary font-medium">
               Log In
             </Link>
           </p>
