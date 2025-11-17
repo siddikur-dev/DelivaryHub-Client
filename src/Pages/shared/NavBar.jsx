@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const NavBar = () => {
-  const { user, signOutUser } = useAuth();
+  const { user, logOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const NavBar = () => {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        signOutUser();
+        logOut().
         Swal.fire({
           position: "center",
           icon: "success",
