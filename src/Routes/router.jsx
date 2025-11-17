@@ -1,16 +1,10 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import ErrorPage from "../pages/ErrorPage";
-
 import Login from "../Pages/Authentication/Login";
-import SignUp from "../pages/SignUp";
 import MyProfile from "../pages/MyProfile";
-import AddFoodsForm from "../pages/AddFoods/AddFoodsForm";
-import FoodDetails from "../pages/FoodDetails";
-import EditFood from "../pages/EditFood/EditFood";
 import Gallery from "../pages/Gallery/Gallery";
 import PrivateRoutes from "./PrivateRoutes";
-import FoodPurchase from "../pages/FoodPurchase/FoodPurchase";
 import OrdersFromApi from "../pages/MyOrders/OrdersFromApi";
 import MyFoodsFromApi from "../pages/MyFoods/MyFoodsFromApi";
 import TermsAndConditions from "../pages/TermsAndConditions";
@@ -18,8 +12,9 @@ import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Contact from "../pages/Contact";
 import Home from "../Pages/Home/Home";
 import Coverage from "../Pages/Coverage/Coverage";
-import Spinner from "../pages/shared/Spinner";
 import AuthLayout from "../layouts/AuthLayout/AuthLayout";
+import BeARider from "../Pages/BeARider/BeARider";
+import SignUp from "../Pages/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -45,13 +40,7 @@ const router = createBrowserRouter([
         loader: () => fetch("/data/serviceCenter.json"),
         Component: Coverage,
       },
-      {
-        path: "/item-details/:id",
-        hydrateFallbackElement: <Spinner />,
-        loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/foods/${params.id}`),
-        Component: FoodDetails,
-      },
+     
       {
         path: "my-orders",
         element: (
@@ -71,39 +60,15 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "add-foods",
+        path: "/be-a-rider",
         element: (
           <PrivateRoutes>
-            {" "}
-            <AddFoodsForm />{" "}
+            <BeARider></BeARider>
           </PrivateRoutes>
         ),
       },
-      {
-        path: "/edit-food/:id",
-        hydrateFallbackElement: <Spinner />,
-        loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/foods/${params.id}`),
-        element: (
-          <PrivateRoutes>
-            {" "}
-            <EditFood />{" "}
-          </PrivateRoutes>
-        ),
-      },
-      {
-        path: "/food-purchase/:id",
-        hydrateFallbackElement: <Spinner />,
-        loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/foods/${params.id}`),
-        element: (
-          <PrivateRoutes>
-            {" "}
-            <FoodPurchase />{" "}
-          </PrivateRoutes>
-        ),
-      },
-      {
+   
+    {
         path: "/gallery",
         element: <Gallery />,
       },

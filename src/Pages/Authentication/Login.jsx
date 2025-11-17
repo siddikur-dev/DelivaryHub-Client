@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-  const { signInUser, googleSignIn } = useAuth();
+  const { loginUser, googleSignIn } = useAuth();
   const {
     register,
     handleSubmit,
@@ -13,24 +13,38 @@ const Login = () => {
   } = useForm();
 
   const location = useLocation();
-  const from = location.state?.from || "/";
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
-    signInUser(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
+    loginUser(data.email, data.password)
+      .then(() => {
         Swal.fire({
-          icon: "Success",
+          icon: "success",
           title: "Logged In Successfully!",
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(from);
+        navigate(location?.state || "/");
       })
       .catch((error) => {
-        console.log(error);
+        const authErrorMessages = {
+          "auth/invalid-credential": "Wrong email or password.",
+          "auth/user-not-found": "User does not exist.",
+          "auth/wrong-password": "Wrong password.",
+          "auth/invalid-email": "Invalid email format.",
+          "auth/missing-password": "Please enter your password.",
+          "auth/too-many-requests": "Too many attempts. Try again later.",
+        };
+
+        const message =
+          authErrorMessages[error.code] || "Something went wrong. Try again.";
+
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed!",
+          text: message,
+          timer: 2500,
+        });
       });
   };
 
@@ -46,13 +60,12 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(from);
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
   return (
     <div className=" py-20 px-12">
       <div className="border-secondary/30 shadow-md border-2 p-10 ">
@@ -87,8 +100,7 @@ const Login = () => {
               placeholder="Type your password"
               className="input input-bordered w-full rounded-3xl focus:outline-none focus:ring-1 focus:ring-secondary"
             />
-                  
-              
+
             {errors.password?.type === "required" && (
               <p className="text-red-500 text-sm mt-1">Password is required</p>
             )}
@@ -113,6 +125,7 @@ const Login = () => {
           <div className="text-sm text-accent text-center">
             Don't have any account?{" "}
             <Link
+              state={location.state}
               to="/auth/signup"
               className="text-secondary hover:underline cursor-pointer"
             >

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -10,7 +10,7 @@ import axios from "axios";
 const SignUp = () => {
   const { user, createUser, googleSignIn, setUser, updateUser } = useAuth();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -79,7 +79,7 @@ const SignUp = () => {
         showConfirmButton: false,
       });
 
-      navigate("/");
+      navigate(location?.state || "/");
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -98,7 +98,6 @@ const SignUp = () => {
           photoURL: currentUser.photoURL,
         });
 
-        navigate("/");
         Swal.fire({
           position: "center",
           icon: "success",
@@ -106,6 +105,7 @@ const SignUp = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         Swal.fire({
@@ -116,9 +116,9 @@ const SignUp = () => {
       });
   };
 
-  useEffect(() => {
-    if (user) navigate("/");
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user) navigate("/");
+  // }, [user, navigate]);
 
   if (user) return <Spinner />;
 
@@ -268,7 +268,11 @@ const SignUp = () => {
 
         <p className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <Link to="/auth/login" className="text-secondary font-medium">
+          <Link
+            state={location.state}
+            to="/auth/login"
+            className="text-secondary font-medium"
+          >
             Log In
           </Link>
         </p>
