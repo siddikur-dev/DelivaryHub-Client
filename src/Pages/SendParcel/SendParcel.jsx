@@ -1,23 +1,27 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
 
 const SendParcel = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors },
   } = useForm();
 
   const sendParcel = (data) => {
     console.log(data);
+    const sameDistrict = data.senderDistrict === data.receiverDistrict;
+    console.log(sameDistrict);
   };
 
   const serviceCenter = useLoaderData();
   const duplicateDivision = serviceCenter.map((c) => c.division);
   const divisions = [...new Set(duplicateDivision)];
-  const senderDivision = watch("senderDivision");
+  // explore useMemo Callback
+  const senderDivision = useWatch({ control, name: "senderDivision" });
+  const receiverDivision = useWatch({ control, name: "receiverDivision" });
   // districts by divisions
   const districtsByDivision = (senderDivision) => {
     const divisions = serviceCenter.filter(
@@ -138,7 +142,6 @@ const SendParcel = () => {
                 ))}
               </select>
               {/* sender district */}
-
               <select
                 {...register("senderDistrict", { required: true })}
                 className="select select-bordered"
@@ -181,40 +184,47 @@ const SendParcel = () => {
                 className="input input-bordered"
                 placeholder="Receiver Name"
               />
-              <select
-                {...register("receiverWarehouse", { required: true })}
-                className="select select-bordered"
-              >
-                <option value="">Select Wire house</option>
-                <option value="warehouse1">Warehouse 1</option>
-                <option value="warehouse2">Warehouse 2</option>
-              </select>
 
               <input
                 {...register("receiverAddress", { required: true })}
                 className="input input-bordered"
                 placeholder="Address"
               />
-              <input
-                type="number"
-                {...register("receiverContact", {
-                  required: true,
-                })}
-                className="input input-bordered"
-                placeholder="Receiver Contact No"
-              />
-            </div>
 
-            <div className="mt-4">
+              {/* receiver division */}
               <select
-                {...register("receiverRegion", { required: true })}
+                {...register("receiverDivision", { required: true })}
                 className="select select-bordered w-full"
               >
-                <option value="">Select your region</option>
-                <option value="dhaka">Dhaka</option>
-                <option value="chittagong">Chittagong</option>
+                <option value="">Select your division</option>
+                {divisions.map((division, i) => {
+                  return (
+                    <option value={division} key={i}>
+                      {division}
+                    </option>
+                  );
+                })}
+              </select>
+              {/* receiver district */}
+              <select
+                {...register("receiverDistrict", { required: true })}
+                className="select select-bordered"
+              >
+                <option value="">Select receiver district</option>
+                {districtsByDivision(receiverDivision).map((district) => (
+                  <option value={district}>{district}</option>
+                ))}
               </select>
             </div>
+            {/* receiver number */}
+            <input
+              type="number"
+              {...register("receiverContact", {
+                required: true,
+              })}
+              className="input input-bordered w-full mt-4"
+              placeholder="Receiver Contact No"
+            />
 
             <textarea
               {...register("deliveryInstruction")}
