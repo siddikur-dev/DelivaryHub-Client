@@ -16,6 +16,8 @@ import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import BeARider from "../Pages/BeARider/BeARider";
 import SignUp from "../Pages/SignUp";
 import SendParcel from "../Pages/SendParcel/SendParcel";
+import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
+import MyParcel from "../Pages/Dashboard/MyParcel/MyParcel";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +100,20 @@ const router = createBrowserRouter([
       {
         path: "signup",
         Component: SignUp,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout />
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        path: "my-parcel",
+        Component: MyParcel,
       },
     ],
   },
