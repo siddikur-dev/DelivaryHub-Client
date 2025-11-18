@@ -1,15 +1,30 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router";
 
 const SendParcel = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
   const sendParcel = (data) => {
-    console.log(data); // এখন সব ডাটা দেখাবে
+    console.log(data);
+  };
+
+  const serviceCenter = useLoaderData();
+  const duplicateDivision = serviceCenter.map((c) => c.division);
+  const divisions = [...new Set(duplicateDivision)];
+  const senderDivision = watch("senderDivision");
+  // districts by divisions
+  const districtsByDivision = (senderDivision) => {
+    const divisions = serviceCenter.filter(
+      (s) => s.division === senderDivision
+    );
+    const district = divisions.map((d) => d.district);
+    return district;
   };
 
   return (
@@ -104,39 +119,47 @@ const SendParcel = () => {
                 className="input input-bordered"
                 placeholder="Sender Name"
               />
-              <select
-                {...register("senderWarehouse", { required: true })}
-                className="select select-bordered"
-              >
-                <option value="">Select Wire house</option>
-                <option value="warehouse1">Warehouse 1</option>
-                <option value="warehouse2">Warehouse 2</option>
-              </select>
 
               <input
                 {...register("senderAddress", { required: true })}
                 className="input input-bordered"
                 placeholder="Address"
               />
+              {/* sender division */}
+              <select
+                {...register("senderDivision", { required: true })}
+                className="select select-bordered "
+              >
+                <option value="">Select your division</option>
+                {divisions.map((division, i) => (
+                  <option value={division} key={i}>
+                    {division}
+                  </option>
+                ))}
+              </select>
+              {/* sender district */}
+
+              <select
+                {...register("senderDistrict", { required: true })}
+                className="select select-bordered"
+              >
+                <option value="">Select District</option>
+                {districtsByDivision(senderDivision).map((district, i) => (
+                  <option value={district} key={i}>
+                    <option value={district}>{district} </option>
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mt-4">
               <input
                 type="number"
                 {...register("senderContact", {
                   required: true,
                 })}
-                className="input input-bordered"
+                className="input input-bordered w-full"
                 placeholder="Sender Contact No"
               />
-            </div>
-
-            <div className="mt-4">
-              <select
-                {...register("senderRegion", { required: true })}
-                className="select select-bordered w-full"
-              >
-                <option value="">Select your region</option>
-                <option value="dhaka">Dhaka</option>
-                <option value="chittagong">Chittagong</option>
-              </select>
             </div>
 
             <textarea
