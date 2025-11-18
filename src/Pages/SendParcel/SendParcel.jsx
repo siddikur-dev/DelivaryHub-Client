@@ -2,6 +2,8 @@ import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const SendParcel = () => {
   const {
@@ -11,8 +13,10 @@ const SendParcel = () => {
     formState: { errors },
   } = useForm();
 
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+
   const sendParcel = (data) => {
-    console.log(data);
     const isSameDistrict = data.senderDistrict === data.receiverDistrict;
     const parcelWeight = parseFloat(data.parcelWeight);
     const isDocument = data.parcelType === "document";
@@ -33,24 +37,26 @@ const SendParcel = () => {
       }
       // are you sure to pay
     }
-    console.log(cost);
-     Swal.fire({
-        title: "Are you sure?",
-        text: `You will be paid ${cost} taka `,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "Pay!",
-            text: "Your parcel's cost paid.",
-            icon: "success",
-          });
-        }
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You will be paid ${cost} taka `,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.post("/parcels", data).then((res) => {
+          console.log(res.data);
+        });
+        Swal.fire({
+          title: "Pay!",
+          text: "Your parcel's cost paid.",
+          icon: "success",
+        });
+      }
+    });
   };
 
   const serviceCenter = useLoaderData();
@@ -70,6 +76,7 @@ const SendParcel = () => {
 
   return (
     <div className="max-w-6xl mx-auto bg-white p-10 rounded-3xl shadow-sm">
+      <title>Send Parcel - DeliveryHub</title>
       {/* Title */}
       <h1 className="text-4xl font-bold text-[#063C33]">Add Parcel</h1>
 
@@ -157,6 +164,8 @@ const SendParcel = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 {...register("senderName", { required: true })}
+                defaultValue={user?.displayName}
+                readOnly
                 className="input input-bordered"
                 placeholder="Sender Name"
               />
@@ -171,7 +180,7 @@ const SendParcel = () => {
                 {...register("senderDivision", { required: true })}
                 className="select select-bordered "
               >
-                <option value="">Select your division</option>
+                <option>Select your division</option>
                 {divisions.map((division, i) => (
                   <option value={division} key={i}>
                     {division}
@@ -183,7 +192,7 @@ const SendParcel = () => {
                 {...register("senderDistrict", { required: true })}
                 className="select select-bordered"
               >
-                <option value="">Select District</option>
+                <option>Select District</option>
                 {districtsByDivision(senderDivision).map((district, i) => (
                   <option value={district} key={i}>
                     <option value={district}>{district} </option>
@@ -191,14 +200,17 @@ const SendParcel = () => {
                 ))}
               </select>
             </div>
+            {/* sender email */}
             <div className="mt-4">
               <input
-                type="number"
-                {...register("senderContact", {
+                type="email"
+                {...register("senderEmail", {
                   required: true,
                 })}
+                defaultValue={user?.email}
+                readOnly
                 className="input input-bordered w-full"
-                placeholder="Sender Contact No"
+                placeholder="Sender Email"
               />
             </div>
 
@@ -233,7 +245,7 @@ const SendParcel = () => {
                 {...register("receiverDivision", { required: true })}
                 className="select select-bordered w-full"
               >
-                <option value="">Select your division</option>
+                <option>Select your division</option>
                 {divisions.map((division, i) => {
                   return (
                     <option value={division} key={i}>
@@ -247,20 +259,22 @@ const SendParcel = () => {
                 {...register("receiverDistrict", { required: true })}
                 className="select select-bordered"
               >
-                <option value="">Select receiver district</option>
-                {districtsByDivision(receiverDivision).map((district) => (
-                  <option value={district}>{district}</option>
+                <option>Select receiver district</option>
+                {districtsByDivision(receiverDivision).map((district, i) => (
+                  <option value={district} key={i}>
+                    {district}
+                  </option>
                 ))}
               </select>
             </div>
-            {/* receiver number */}
+            {/* receiver email */}
             <input
-              type="number"
-              {...register("receiverContact", {
+              type="email"
+              {...register("receiverEmail", {
                 required: true,
               })}
               className="input input-bordered w-full mt-4"
-              placeholder="Receiver Contact No"
+              placeholder="Receiver Email"
             />
 
             <textarea
