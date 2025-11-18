@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 
 const SendParcel = () => {
   const {
@@ -12,8 +13,44 @@ const SendParcel = () => {
 
   const sendParcel = (data) => {
     console.log(data);
-    const sameDistrict = data.senderDistrict === data.receiverDistrict;
-    console.log(sameDistrict);
+    const isSameDistrict = data.senderDistrict === data.receiverDistrict;
+    const parcelWeight = parseFloat(data.parcelWeight);
+    const isDocument = data.parcelType === "document";
+    let cost = 0;
+
+    if (isDocument) {
+      cost = isSameDistrict ? 60 : 80;
+    } else {
+      if (parcelWeight <= 3) {
+        cost = isSameDistrict ? 110 : 150;
+      } else {
+        const minCharge = isSameDistrict ? 110 : 150;
+        const extraWeight = parcelWeight - 3;
+        const extraCharge = isSameDistrict
+          ? extraWeight * 40
+          : extraWeight * 40 + 40;
+        cost = minCharge + extraCharge;
+      }
+      // are you sure to pay
+    }
+    console.log(cost);
+     Swal.fire({
+        title: "Are you sure?",
+        text: `You will be paid ${cost} taka `,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Pay!",
+            text: "Your parcel's cost paid.",
+            icon: "success",
+          });
+        }
+      });
   };
 
   const serviceCenter = useLoaderData();
