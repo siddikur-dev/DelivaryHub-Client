@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router";
 
 const MyParcel = () => {
   const { user } = useAuth();
@@ -50,7 +51,7 @@ const MyParcel = () => {
             <th>#</th>
             <th>Title</th>
             <th>Type</th>
-            <th>Created At</th>
+            {/* <th>Created At</th> */}
             <th>Cost</th>
             <th>Payment</th>
             <th>Actions</th>
@@ -62,10 +63,17 @@ const MyParcel = () => {
               <td>{index + 1}</td>
               <td className="max-w-[180px] truncate">{parcel.parcelName}</td>
               <td className="capitalize">{parcel.parcelType}</td>
-              <td>{parcel.createdAt}</td>
+              {/* <td>{parcel.createdAt}</td> */}
               <td>৳{parcel.cost}</td>
               <td>
-                <span
+                <Link
+                  to={`/dashboard/payment/${parcel._id}`}
+                  className="btn btn-xs btn-secondary text-black"
+                >
+                  {" "}
+                  Pay
+                </Link>
+                {/* <span
                   className={`badge ${
                     parcel.payment_status === "paid"
                       ? "badge-success"
@@ -73,7 +81,7 @@ const MyParcel = () => {
                   }`}
                 >
                   {parcel.payment_status}
-                </span>
+                </span> */}
               </td>
               <td className="space-x-2">
                 <button className="btn btn-xs hover:btn-secondary text-black">
