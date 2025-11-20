@@ -112,7 +112,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "my-parcel",
+        path: "my-parcels",
         Component: MyParcel,
       },
     ],

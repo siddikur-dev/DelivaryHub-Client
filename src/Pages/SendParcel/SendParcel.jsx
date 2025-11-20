@@ -36,6 +36,7 @@ const SendParcel = () => {
         cost = minCharge + extraCharge;
       }
       // are you sure to pay
+      data.cost = cost;
     }
     Swal.fire({
       title: "Are you sure?",
