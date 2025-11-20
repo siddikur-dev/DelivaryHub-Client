@@ -19,12 +19,15 @@ const SendParcel = () => {
   const sendParcel = (data) => {
     const isSameDistrict = data.senderDistrict === data.receiverDistrict;
     const parcelWeight = parseFloat(data.parcelWeight);
-    const isDocument = data.parcelType === "document";
+    const isDocument = data.parcelType == "document";
+
     let cost = 0;
 
     if (isDocument) {
+      //  Cost is set here for documents
       cost = isSameDistrict ? 60 : 80;
     } else {
+      // For non-documents
       if (parcelWeight <= 3) {
         cost = isSameDistrict ? 110 : 150;
       } else {
@@ -33,11 +36,14 @@ const SendParcel = () => {
         const extraCharge = isSameDistrict
           ? extraWeight * 40
           : extraWeight * 40 + 40;
+        // Cost is set here for non-documents > 3kg
         cost = minCharge + extraCharge;
       }
-      // are you sure to pay
-      data.cost = cost;
     }
+
+    // MOVED THESE LINES OUTSIDE THE IF/ELSE BLOCKS
+    console.log(cost);
+    data.cost = cost;
     Swal.fire({
       title: "Are you sure?",
       text: `You will be paid ${cost} taka `,
