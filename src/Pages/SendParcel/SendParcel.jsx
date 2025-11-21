@@ -42,7 +42,6 @@ const SendParcel = () => {
     }
 
     // MOVED THESE LINES OUTSIDE THE IF/ELSE BLOCKS
-    console.log(cost);
     data.cost = cost;
     Swal.fire({
       title: "Are you sure?",
