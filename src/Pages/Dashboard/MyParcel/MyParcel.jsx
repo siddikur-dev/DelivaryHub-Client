@@ -9,15 +9,16 @@ import { Link } from "react-router";
 const MyParcel = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+
   const { data: parcels = [], refetch } = useQuery({
     queryKey: ["my-parcels", user?.email],
+    enabled: !!user?.email, // ⬅ FIX ADDED
     queryFn: async () => {
-      const res = await axiosSecure.get(`/parcels?email=${user?.email}`);
+      const res = await axiosSecure.get(`/parcels?email=${user.email}`);
       return res.data;
     },
   });
 
-  // const handle delete parcel
   const handleDeleteParcel = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -31,7 +32,6 @@ const MyParcel = () => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/parcels/${id}`).then((data) => {
           if (data.data.deletedCount) {
-            // it will be automatically refresh window
             refetch();
             Swal.fire({
               title: "Deleted!",
@@ -44,7 +44,6 @@ const MyParcel = () => {
     });
   };
 
-  // handle payment
   const handlePayment = async (parcel) => {
     const paymentInfo = {
       cost: parcel.cost,
@@ -53,9 +52,9 @@ const MyParcel = () => {
       senderEmail: parcel.senderEmail,
     };
     const res = await axiosSecure.post("/checkout-session", paymentInfo);
-    console.log(res.data);
     window.location.href = res.data.url;
   };
+
   return (
     <div className="overflow-x-auto shadow-md rounded-xl">
       <table className="table table-zebra w-full">
@@ -64,38 +63,37 @@ const MyParcel = () => {
             <th>#</th>
             <th>Title</th>
             <th>Type</th>
-            {/* <th>Created At</th> */}
             <th>Cost</th>
             <th>Payment</th>
             <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
           {parcels.map((parcel, index) => (
             <tr key={parcel._id}>
               <td>{index + 1}</td>
               <td className="max-w-[180px] truncate">{parcel.parcelName}</td>
               <td className="capitalize">{parcel.parcelType}</td>
-              {/* <td>{parcel.createdAt}</td> */}
               <td>৳{parcel.cost}</td>
+
               <td>
-                <p
-                  onClick={() => handlePayment(parcel)}
-                  // to={`/dashboard/payment/${parcel._id}`}
-                  className="btn btn-xs btn-secondary text-black"
-                >
-                  
-                  {" "}
-                  Pay
-                </p>
+                {parcel.paymentStatus === "paid" ? (
+                  <span className="text-green-600 font-semibold">Paid</span>
+                ) : (
+                  <button
+                    onClick={() => handlePayment(parcel)}
+                    className="btn btn-xs btn-secondary text-black"
+                  >
+                    Pay
+                  </button>
+                )}
               </td>
+
               <td className="space-x-2">
                 <button className="btn btn-xs hover:btn-secondary text-black">
                   Details
                 </button>
-                {parcel.payment_status === "unpaid" && (
-                  <button className="btn btn-xs btn-primary">Pay</button>
-                )}
                 <button
                   onClick={() => handleDeleteParcel(parcel._id)}
                   className="btn btn-xs btn-error btn-outline"
@@ -106,11 +104,13 @@ const MyParcel = () => {
             </tr>
           ))}
 
-          <tr>
-            <td colSpan="6" className="text-center text-gray-500 py-6">
-              No parcels found.
-            </td>
-          </tr>
+          {parcels.length === 0 && (
+            <tr>
+              <td colSpan="6" className="text-center text-gray-500 py-6">
+                No parcels found.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

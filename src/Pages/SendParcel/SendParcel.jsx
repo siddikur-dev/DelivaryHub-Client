@@ -20,7 +20,7 @@ const SendParcel = () => {
     const isSameDistrict = data.senderDistrict === data.receiverDistrict;
     const parcelWeight = parseFloat(data.parcelWeight);
     const isDocument = data.parcelType == "document";
-
+    console.log(data);
     let cost = 0;
 
     if (isDocument) {
@@ -43,6 +43,7 @@ const SendParcel = () => {
 
     // MOVED THESE LINES OUTSIDE THE IF/ELSE BLOCKS
     data.cost = cost;
+    // data.paymentStatus = "pending";
     Swal.fire({
       title: "Are you sure?",
       text: `You will be paid ${cost} taka `,
