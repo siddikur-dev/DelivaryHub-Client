@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate, useLocation } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Login = () => {
   const { loginUser, googleSignIn } = useAuth();
@@ -14,6 +15,7 @@ const Login = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosInstance = useAxiosSecure();
 
   const onSubmit = (data) => {
     loginUser(data.email, data.password)
@@ -52,15 +54,19 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        const user = result.user;
-        console.log(user);
-        Swal.fire({
-          icon: "success",
-          title: "Logged In Successfully!",
-          showConfirmButton: false,
-          timer: 1500,
+        console.log(result.user);
+
+        // create user in the database
+        const userInfo = {
+          email: result.user.email,
+          displayName: result.user.displayName,
+          photoURL: result.user.photoURL,
+        };
+
+        axiosInstance.post("/users", userInfo).then((res) => {
+          console.log("user data has been stored", res.data);
+          navigate(location.state || "/");
         });
-        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log(error);

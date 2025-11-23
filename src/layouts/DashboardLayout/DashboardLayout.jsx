@@ -74,6 +74,9 @@ const DashboardLayout = () => {
               <li>
                 <Link to="/dashboard/payment-history">Payment History</Link>
               </li>
+              <li>
+                <Link to="/dashboard/approve-rider">Approve Riders</Link>
+              </li>
 
               <li>
                 <button>

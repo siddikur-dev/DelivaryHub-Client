@@ -35,6 +35,7 @@ const Register = () => {
         };
         //update user profile info in the firebase
         const userRes = await axiosInstance.post("/users", userInfo);
+        console.log(userRes);
         updateUser({ displayName: data.name, photoURL: profilePic })
           .then(() => {
             Swal.fire({
@@ -58,27 +59,23 @@ const Register = () => {
   //signin with google
   const handleGoogleSignIn = () => {
     googleSignIn()
-      .then(async (result) => {
-        const user = result.user;
-        //update user info in the databsae
+      .then((result) => {
+        console.log(result.user);
+
+        // create user in the database
         const userInfo = {
-          email: user.email,
-          role: "user", // default role is user
-          created_at: new Date().toISOString(),
-          last_log_in: new Date().toISOString(),
+          email: result.user.email,
+          displayName: result.user.displayName,
+          photoURL: result.user.photoURL,
         };
-        const res = await axiosInstance.post("/users", userInfo);
-        Swal.fire({
-          icon: "success",
-          title: "Registration Successful!",
-          text: "Your account has been created.",
-          showConfirmButton: false,
-          timer: 1500,
+
+        axiosInstance.post("/users", userInfo).then((res) => {
+          console.log("user data has been stored", res.data);
+          navigate(location.state || "/");
         });
-        navigate(from);
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
       });
   };
 
