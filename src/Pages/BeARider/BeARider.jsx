@@ -67,7 +67,7 @@ const BeARider = () => {
   };
 
   // -----------------------------
-  // Create dropdown dependent 
+  // Create dropdown dependent
   // -----------------------------
   const duplicateDivision = serviceCenter.map((c) => c.division);
   const divisions = [...new Set(duplicateDivision)];
@@ -87,7 +87,6 @@ const BeARider = () => {
         </h1>
 
         <form onSubmit={handleSubmit(beARider)} className="space-y-6">
-
           {/* Personal Info */}
           <div className="bg-gray-50 p-4 rounded-lg">
             <label className="label">Full Name</label>
@@ -101,8 +100,7 @@ const BeARider = () => {
             <label className="label">Email</label>
             <input
               type="email"
-              value={user?.email || ""}
-              readOnly
+              defaultValue={user?.email || ""}
               className="input input-bordered w-full mb-4 bg-gray-100"
             />
 

@@ -1,131 +1,112 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import { FaCheck, FaEye, FaTimes } from "react-icons/fa";
+import { FaUserCheck } from "react-icons/fa";
+import { IoPersonRemoveSharp } from "react-icons/io5";
+import { FaTrashCan } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
-const ApproveRider = () => {
+const ApproveRiders = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: riders = [] } = useQuery({
+
+  const { refetch, data: riders = [] } = useQuery({
     queryKey: ["riders", "pending"],
     queryFn: async () => {
       const res = await axiosSecure.get("/riders");
       return res.data;
     },
   });
+
+  const updateRiderStatus = (rider, status) => {
+    const updateInfo = { status: status, email: rider.email };
+    axiosSecure.patch(`/riders/${rider._id}`, updateInfo).then((res) => {
+      if (res.data.modifiedCount) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Rider status is set to ${status}.`,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    });
+  };
+
+  const handleApproval = (rider) => {
+    updateRiderStatus(rider, "approved");
+  };
+
+  const handleRejection = (rider) => {
+    updateRiderStatus(rider, "rejected");
+  };
+
+  const handleRiderDelete = (id) => {
+    axiosSecure.delete(`/riders/${id}`).then((res) => {
+      if (res.data.deletedCount) {
+        refetch();
+      }
+    });
+  };
+
   return (
     <div>
-      <div className="p-6">
-        <h2 className="text-2xl font-semibold mb-4">
-          Pending Rider Applications
-        </h2>
-
-        <div className="overflow-x-auto">
-          <table className="table table-zebra w-full">
-            <thead>
+      <h2 className="text-5xl">Riders Pending Approval: {riders.length} </h2>
+      <div className="overflow-x-auto">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>District</th>
+              <th>status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {riders.map((rider, index) => (
               <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Region</th>
-                <th>District</th>
-                <th>Phone</th>
-                <th>Applied</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {riders.map((rider) => (
-                <tr key={rider._id}>
-                  <td>{rider.name}</td>
-                  <td>{rider.email}</td>
-                  <td>{rider.region}</td>
-                  <td>{rider.district}</td>
-                  <td>{rider.phone}</td>
-                  <td>{new Date(rider.created_at).toLocaleDateString()}</td>
-                  <td className="flex gap-2">
-                    <button
-                      // onClick={() => setSelectedRider(rider)}
-                      className="btn btn-sm btn-info"
-                    >
-                      <FaEye />
-                    </button>
-                    <button
-                      // onClick={() => handleDecision(rider._id, "approve")}
-                      className="btn btn-sm btn-success"
-                    >
-                      <FaCheck />
-                    </button>
-                    <button
-                      // onClick={() => handleDecision(rider._id, "reject")}
-                      className="btn btn-sm btn-error"
-                    >
-                      <FaTimes />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Modal for viewing rider details */}
-        {/* {selectedRider && (
-          <dialog id="riderDetailsModal" className="modal modal-open">
-            <div className="modal-box max-w-2xl">
-              <h3 className="font-bold text-xl mb-2">Rider Details</h3>
-              <div className="space-y-2">
-                <p>
-                  <strong>Name:</strong> {selectedRider.name}
-                </p>
-                <p>
-                  <strong>Email:</strong> {selectedRider.email}
-                </p>
-                <p>
-                  <strong>Phone:</strong> {selectedRider.phone}
-                </p>
-                <p>
-                  <strong>Age:</strong> {selectedRider.age}
-                </p>
-                <p>
-                  <strong>NID:</strong> {selectedRider.nid}
-                </p>
-                <p>
-                  <strong>Bike Brand:</strong> {selectedRider.bike_brand}
-                </p>
-                <p>
-                  <strong>Bike Registration:</strong>{" "}
-                  {selectedRider.bike_registration}
-                </p>
-                <p>
-                  <strong>Region:</strong> {selectedRider.region}
-                </p>
-                <p>
-                  <strong>District:</strong> {selectedRider.district}
-                </p>
-                <p>
-                  <strong>Applied At:</strong>{" "}
-                  {new Date(selectedRider.created_at).toLocaleString()}
-                </p>
-                {selectedRider.note && (
-                  <p>
-                    <strong>Note:</strong> {selectedRider.note}
+                <th>{index + 1}</th>
+                <td>{rider.name}</td>
+                <td>{rider.email}</td>
+                <td>{rider.district}</td>
+                <td>
+                  <p
+                    className={`${
+                      rider.status === "approved"
+                        ? "text-green-800"
+                        : "text-red-500"
+                    }`}
+                  >
+                    {rider.status}
                   </p>
-                )}
-              </div>
-
-              <div className="modal-action mt-4">
-                <button
-                  className="btn btn-outline"
-                  onClick={() => setSelectedRider(null)}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </dialog>
-        )} */}
+                </td>
+                <td>
+                  <button onClick={() => handleApproval(rider)} className="btn">
+                    <FaUserCheck />
+                  </button>
+                  <button
+                    onClick={() => handleRejection(rider)}
+                    className="btn"
+                  >
+                    <IoPersonRemoveSharp />
+                  </button>
+                  <button
+                    onClick={() => handleRiderDelete(rider._id)}
+                    className="btn"
+                  >
+                    <FaTrashCan />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
 };
 
-export default ApproveRider;
+export default ApproveRiders;
