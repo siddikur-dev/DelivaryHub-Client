@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
@@ -15,6 +15,7 @@ const SendParcel = () => {
 
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const sendParcel = (data) => {
     const isSameDistrict = data.senderDistrict === data.receiverDistrict;
@@ -62,6 +63,7 @@ const SendParcel = () => {
           text: "Your parcel's cost paid.",
           icon: "success",
         });
+        navigate("/dashboard/my-parcels");
       }
     });
   };

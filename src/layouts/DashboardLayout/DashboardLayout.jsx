@@ -71,6 +71,9 @@ const DashboardLayout = () => {
               <li>
                 <Link to="/dashboard/my-parcels">My Parcel</Link>
               </li>
+              <li>
+                <Link to="/dashboard/payment-history">Payment History</Link>
+              </li>
 
               <li>
                 <button>
