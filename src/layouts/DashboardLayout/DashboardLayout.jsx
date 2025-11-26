@@ -36,7 +36,7 @@ const DashboardLayout = () => {
               </svg>
             </label>
 
-            <div className="px-4">Navbar Title</div>
+            <h2 className="text-4xl text-center mx-auto">Delivery Hub</h2>
           </nav>
 
           <Outlet />
@@ -73,6 +73,9 @@ const DashboardLayout = () => {
               </li>
               <li>
                 <Link to="/dashboard/payment-history">Payment History</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/users-management">Users Management</Link>
               </li>
               <li>
                 <Link to="/dashboard/approve-rider">Approve Riders</Link>

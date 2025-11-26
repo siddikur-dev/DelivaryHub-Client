@@ -56,6 +56,7 @@ const BeARider = () => {
             reset();
           }
         } catch (err) {
+          console.log(err);
           Swal.fire({
             icon: "error",
             title: "Failed",
@@ -92,8 +93,7 @@ const BeARider = () => {
             <label className="label">Full Name</label>
             <input
               type="text"
-              value={user?.displayName || ""}
-              readOnly
+              defaultValue={user?.displayName || ""}
               className="input input-bordered w-full mb-4 bg-gray-100"
             />
 

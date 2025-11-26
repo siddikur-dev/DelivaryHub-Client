@@ -3,13 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import ErrorPage from "../pages/ErrorPage";
 import Login from "../Pages/Authentication/Login";
 import MyProfile from "../pages/MyProfile";
-import Gallery from "../pages/Gallery/Gallery";
 import PrivateRoutes from "./PrivateRoutes";
-import OrdersFromApi from "../pages/MyOrders/OrdersFromApi";
-import MyFoodsFromApi from "../pages/MyFoods/MyFoodsFromApi";
-import TermsAndConditions from "../pages/TermsAndConditions";
-import PrivacyPolicy from "../pages/PrivacyPolicy";
-import Contact from "../pages/Contact";
 import Home from "../Pages/Home/Home";
 import Coverage from "../Pages/Coverage/Coverage";
 import AuthLayout from "../layouts/AuthLayout/AuthLayout";
@@ -23,6 +17,7 @@ import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSuccess";
 import PaymentFailed from "../Pages/Dashboard/Payment/PaymentFailed";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 import ApproveRider from "../Pages/Dashboard/ApproveRider/ApproveRider";
+import UserManagement from "../Pages/Dashboard/UserManagement/UserManagement";
 
 const router = createBrowserRouter([
   {
@@ -50,15 +45,6 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "my-orders",
-        element: (
-          <PrivateRoutes>
-            {" "}
-            <OrdersFromApi />{" "}
-          </PrivateRoutes>
-        ),
-      },
-      {
         path: "/send-parcel",
         loader: () => fetch("/data/serviceCenter.json"),
         element: (
@@ -75,23 +61,6 @@ const router = createBrowserRouter([
             <BeARider></BeARider>
           </PrivateRoutes>
         ),
-      },
-
-      {
-        path: "/gallery",
-        element: <Gallery />,
-      },
-      {
-        path: "/terms-and-conditions",
-        Component: TermsAndConditions,
-      },
-      {
-        path: "/privacy-policy",
-        Component: PrivacyPolicy,
-      },
-      {
-        path: "/contact",
-        Component: Contact,
       },
     ],
   },
@@ -124,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "payment/:parcelId",
         Component: Payment,
+      },
+      {
+        path: "users-management",
+        Component: UserManagement,
       },
       {
         path: "payment-success",
