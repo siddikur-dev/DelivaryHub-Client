@@ -62,10 +62,11 @@ const MyParcel = () => {
           <tr>
             <th>#</th>
             <th>Title</th>
-            <th>Type</th>
             <th>Cost</th>
             <th>Payment</th>
             <th>Actions</th>
+            <th>Delivery Status</th>
+            <th>Tracking Id</th>
           </tr>
         </thead>
 
@@ -74,7 +75,6 @@ const MyParcel = () => {
             <tr key={parcel._id}>
               <td>{index + 1}</td>
               <td className="max-w-[180px] truncate">{parcel.parcelName}</td>
-              <td className="capitalize">{parcel.parcelType}</td>
               <td>৳{parcel.cost}</td>
 
               <td>
@@ -101,6 +101,8 @@ const MyParcel = () => {
                   <FaTrashAlt />
                 </button>
               </td>
+              <td>{parcel.deliveryStatus}</td>
+              <td>{parcel.trackingId}</td>
             </tr>
           ))}
 

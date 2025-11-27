@@ -20,6 +20,7 @@ import ApproveRider from "../Pages/Dashboard/ApproveRider/ApproveRider";
 import UserManagement from "../Pages/Dashboard/UserManagement/UserManagement";
 import AdminRoutes from "./AdminRoutes";
 import Profile from "../Pages/Dashboard/Profile/Profile";
+import AssignedRider from "../Pages/Dashboard/Assigned-Rider/AssignedRider";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +105,12 @@ const router = createBrowserRouter([
         path: "users-management",
         element: <AdminRoutes>
           <UserManagement />
+        </AdminRoutes>
+      },
+      {
+        path: "assigned-rider",
+        element: <AdminRoutes>
+          <AssignedRider />
         </AdminRoutes>
       },
       {

@@ -84,6 +84,9 @@ const DashboardLayout = () => {
                     <Link to="/dashboard/users-management">Users Management</Link>
                   </li>
                   <li>
+                    <Link to="/dashboard/assigned-rider">Assigned Riders</Link>
+                  </li>
+                  <li>
                     <Link to="/dashboard/approve-rider">Approve Riders</Link>
                   </li></>
               }
