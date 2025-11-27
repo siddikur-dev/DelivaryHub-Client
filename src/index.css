@@ -2,27 +2,29 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-    themes: light --default;
+	themes: light --default;
 }
+
 @plugin "daisyui/theme" {
-    name: "light";
-    default: true;
-    --color-primary: #03373D;
-    --color-secondary: #CAEB66;
-    --color-base-100: #ffffff;
-    --color-base-300: #E7E7E7;
-    --color-accent: #606060;
-  }
+	name: "light";
+	default: true;
+	--color-primary: #03373D;
+	--color-secondary: #CAEB66;
+	--color-base-100: #ffffff;
+	--color-base-300: #E7E7E7;
+	--color-accent: #606060;
+}
 
 .font-urbanist {
-  font-family: "Urbanist", sans-serif;
-  font-optical-sizing: auto;
+	font-family: "Urbanist", sans-serif;
+	font-optical-sizing: auto;
 }
 
 nav a.active {
-  background: #CAEB66;
-  border-radius: 25px;
+	background: #CAEB66;
+	border-radius: 25px;
 }
+
 /* nav a:hover{
   color: #CAEB66;
 } */
@@ -48,13 +50,30 @@ nav a.active {
 	width: 8px;
 	height: 8px;
 	border-radius: 9999px;
-	background-color: #cbd5e1; /* light slate */
+	background-color: #cbd5e1;
+	/* light slate */
 	opacity: 0.6;
 	transition: all 0.3s;
 }
+
 .custom-swiper-pagination .swiper-pagination-bullet-active.custom-bullet {
 	width: 10px;
 	height: 10px;
-	background-color: #184042; /* dark primary */
+	background-color: #184042;
+	/* dark primary */
 	opacity: 1;
+}
+
+@keyframes carDrive {
+	0% {
+		transform: translateX(-200px);
+	}
+
+	100% {
+		transform: translateX(200px);
+	}
+}
+
+.car-move {
+	animation: carDrive 1.2s linear infinite;
 }
