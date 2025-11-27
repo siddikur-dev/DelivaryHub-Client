@@ -1,8 +1,11 @@
 import React from "react";
 import DeliveryLogo from "../../components/DevliveryLogo/DelivaryLogo";
 import { Link, Outlet } from "react-router";
+import useRole from "../../hooks/useRole";
+import useAuth from "../../hooks/useAuth";
 
 const DashboardLayout = () => {
+  const { role } = useRole()
   return (
     <div className="container mx-auto px-8 lg:px-12 py-2">
       <DeliveryLogo />
@@ -74,12 +77,16 @@ const DashboardLayout = () => {
               <li>
                 <Link to="/dashboard/payment-history">Payment History</Link>
               </li>
-              <li>
-                <Link to="/dashboard/users-management">Users Management</Link>
-              </li>
-              <li>
-                <Link to="/dashboard/approve-rider">Approve Riders</Link>
-              </li>
+              {
+                role === 'admin' && <>
+
+                  <li>
+                    <Link to="/dashboard/users-management">Users Management</Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/approve-rider">Approve Riders</Link>
+                  </li></>
+              }
 
               <li>
                 <button>
