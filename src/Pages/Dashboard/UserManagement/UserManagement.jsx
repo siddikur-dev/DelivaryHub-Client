@@ -6,7 +6,6 @@ import { GoShieldX } from "react-icons/go";
 import Swal from "sweetalert2";
 const UserManagement = () => {
   const axiosSecure = useAxiosSecure();
-  // const [role, setRole] = useState()
   const { data: users = [], refetch } = useQuery({
     queryKey: "users",
     queryFn: async () => {

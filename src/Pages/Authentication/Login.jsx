@@ -140,14 +140,15 @@ const Login = () => {
           </div>
 
           <div className="divider my-4">Or</div>
-          <button
-            onClick={handleGoogleSignIn}
-            className="btn btn-outline hover:bg-secondary/15 border-secondary w-full rounded-3xl"
-          >
-            <FcGoogle />
-            Continue with Google
-          </button>
+
         </form>
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn btn-outline hover:bg-secondary/15 border-secondary w-full rounded-3xl"
+        >
+          <FcGoogle />
+          Continue with Google
+        </button>
       </div>
     </div>
   );

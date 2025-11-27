@@ -4,21 +4,18 @@ import useRole from '../hooks/useRole';
 import Spinner from '../Pages/shared/Spinner';
 import Forbidden from '../Pages/Dashboard/Forbidden/Forbidden';
 
-const AdminRoutes = () => {
-    const { user, loading } = useAuth()
+const AdminRoutes = ({ children }) => {
+    const { loading } = useAuth()
     const { role, roleLoading } = useRole()
 
-    if (loading || roleLoading) {
-        <Spinner />
+
+    if (loading || roleLoading || role === undefined) {
+        return <Spinner />
     }
     if (role !== 'admin') {
         return <Forbidden />
     }
-    return (
-        <div>
-
-        </div>
-    );
+    return children
 };
 
 export default AdminRoutes;
