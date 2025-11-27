@@ -7,9 +7,7 @@ import Forbidden from '../Pages/Dashboard/Forbidden/Forbidden';
 const AdminRoutes = ({ children }) => {
     const { loading } = useAuth()
     const { role, roleLoading } = useRole()
-
-
-    if (loading || roleLoading || role === undefined) {
+    if (loading || roleLoading) {
         return <Spinner />
     }
     if (role !== 'admin') {

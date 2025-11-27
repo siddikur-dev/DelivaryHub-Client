@@ -20,21 +20,27 @@ const useAxiosSecure = () => {
       return response;
     },
     (error) => {
-      console.log(error);
-      if (error.status === 401 || error.status === 403) {
-        logOut()
-          .then(() => {
-            Swal.fire({
-              icon: "success",
-              title: "sign out user for 401 status code",
-              timer: 1500,
-              showConfirmButton: false,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Mama! Logout kore dimu kintu",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+      // if (error.status === 401 || error.status === 403) {
+      //   logOut()
+      //     .then(() => {
+      //       Swal.fire({
+      //         icon: "success",
+      //         title: "sign out user for 401 status code",
+      //         timer: 1500,
+      //         showConfirmButton: false,
+      //       });
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //     });
+      // }
       return Promise.reject(error);
     }
   );

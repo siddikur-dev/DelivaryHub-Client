@@ -102,14 +102,12 @@ const router = createBrowserRouter([
       },
       {
         path: "users-management",
-        // Component: UserManagement,
         element: <AdminRoutes>
           <UserManagement />
         </AdminRoutes>
       },
       {
         path: "approve-rider",
-
         element: <AdminRoutes>
           <ApproveRider />
         </AdminRoutes>

@@ -2,7 +2,7 @@ import delivaryVan from "../../../assets/Project/delivery-van.png";
 
 const Spinner = () => {
   return (
-    <div className="min-h-[calc(100vh-300px)] flex justify-center items-center bg-base-100">
+    <div className="min-h-[calc(100vh-200px)] flex justify-center items-center bg-base-100">
       <div className="overflow-hidden w-[200px]">
         <img
           src={delivaryVan}
