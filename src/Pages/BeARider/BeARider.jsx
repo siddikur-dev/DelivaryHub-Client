@@ -73,7 +73,7 @@ const BeARider = () => {
   const duplicateDivision = serviceCenter.map((c) => c.division);
   const divisions = [...new Set(duplicateDivision)];
 
-  const riderDivision = useWatch({ control, name: "riderDivision" });
+  const riderDivision = useWatch({ control, name: "division" });
 
   const getDistrictsByDivision = (division) => {
     const found = serviceCenter.filter((item) => item.division === division);
@@ -131,7 +131,7 @@ const BeARider = () => {
           <div className="bg-gray-50 p-4 rounded-lg">
             <label className="label">Region (Division)</label>
             <select
-              {...register("riderDivision", { required: true })}
+              {...register("division", { required: true })}
               className="select select-bordered w-full mb-4"
             >
               <option value="">Select Division</option>
@@ -141,13 +141,13 @@ const BeARider = () => {
                 </option>
               ))}
             </select>
-            {errors.riderDivision && (
+            {errors.division && (
               <p className="text-red-500 text-sm">Region is required</p>
             )}
 
             <label className="label">District</label>
             <select
-              {...register("riderDistrict", { required: true })}
+              {...register("district", { required: true })}
               className="select select-bordered w-full"
               disabled={!riderDivision}
             >
@@ -158,7 +158,7 @@ const BeARider = () => {
                 </option>
               ))}
             </select>
-            {errors.riderDistrict && (
+            {errors.district && (
               <p className="text-red-500 text-sm">District is required</p>
             )}
           </div>
