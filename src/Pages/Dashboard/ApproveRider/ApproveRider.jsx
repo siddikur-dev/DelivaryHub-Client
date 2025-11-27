@@ -62,6 +62,7 @@ const ApproveRiders = () => {
               <th>Email</th>
               <th>District</th>
               <th>status</th>
+              <th>Work Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -74,15 +75,16 @@ const ApproveRiders = () => {
                 <td>{rider.district}</td>
                 <td>
                   <p
-                    className={`${
-                      rider.status === "approved"
+                    className={`${rider.status === "approved"
                         ? "text-green-800"
                         : "text-red-500"
-                    }`}
+                      }`}
                   >
                     {rider.status}
                   </p>
                 </td>
+                
+                <td>{rider.workStatus}</td>
                 <td>
                   <button onClick={() => handleApproval(rider)} className="btn">
                     <FaUserCheck />
