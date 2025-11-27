@@ -20,7 +20,7 @@ const Profile = () => {
     // Fetch user data from database
     useEffect(() => {
         if (user?.email) {
-            axiosSecure.get(`/users/${user.email}`)
+            axiosSecure.get(`/users/${user.email}/role`)
                 .then(res => {
                     setUserData(res.data);
                     setEditForm({
