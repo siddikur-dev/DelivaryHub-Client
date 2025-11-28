@@ -80,6 +80,7 @@ const DashboardLayout = () => {
               {
                 role === "rider" && <>
                   <li><Link to="/dashboard/assigned-delivery">Assigne Delivery</Link></li>
+                  <li><Link to="/dashboard/completed-delivery">Completed Delivery</Link></li>
                 </>
               }
               {
