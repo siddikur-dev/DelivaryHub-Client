@@ -2,17 +2,37 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const AssigneDelivery = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure()
-    const { data: parcels = [] } = useQuery({
+    const { data: parcels = [], refetch } = useQuery({
         queryKey: ['parcels', user?.email, "driver_assigned"],
         queryFn: async () => {
             const res = await axiosSecure.get(`/parcels/rider?riderEmail=${user?.email}&deliveryStatus=driver_assigned`);
             return res.data;
         }
     })
+
+    const handleAcceptDelivery = (parcel) => {
+        const statusInfo = { deliveryStatus: "rider_arriving" };
+
+        axiosSecure.patch(`/parcels/${parcel._id}/status`, statusInfo)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        icon: "success",
+                        title: "Thanks for accepting the parcel",
+                        timer: 1500,
+                        showConfirmButton: false,
+                    });
+                }
+            })
+            .catch(err => console.error(err));
+    };
+
     return (
         <div>
             assgined delivery {parcels.length}
@@ -30,8 +50,24 @@ const AssigneDelivery = () => {
                         <tr key={parcel._id}>
                             <td>{index + 1}</td>
                             <td className="max-w-[180px] truncate">{parcel.parcelName}</td>
-                            <td className='gap-4'><button className='text-black btn btn-secondary'>Accept</button>
-                                <button className='text-black btn btn-secondary'>Reject</button></td>
+                            <td>
+                                parcel.deliveryStatus === "driver_assigned" && (
+
+                                <button
+                                    className="btn btn-sm btn-success text-white"
+                                    onClick={() => handleAcceptDelivery(parcel)}
+                                >
+                                    Accept
+                                </button>
+
+                                <button className="btn btn-sm btn-error text-white">
+                                    Reject
+                                </button>
+                                )
+
+
+                            </td>
+
 
 
                         </tr>
