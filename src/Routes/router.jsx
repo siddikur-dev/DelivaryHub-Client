@@ -21,6 +21,8 @@ import UserManagement from "../Pages/Dashboard/UserManagement/UserManagement";
 import AdminRoutes from "./AdminRoutes";
 import Profile from "../Pages/Dashboard/Profile/Profile";
 import AssignedRider from "../Pages/Dashboard/Assigned-Rider/AssignedRider";
+import AssigneDelivery from "../Pages/Dashboard/AssigneDelivery/AssigneDelivery";
+import RiderRoutes from "./RiderRoutes";
 
 const router = createBrowserRouter([
   {
@@ -118,7 +120,9 @@ const router = createBrowserRouter([
       // rider only 
       {
         path: "assigned-delivery",
-        Component: AssignedRider,
+        element: <RiderRoutes>
+          <AssigneDelivery />
+        </RiderRoutes>
       },
       // admin only
       {
