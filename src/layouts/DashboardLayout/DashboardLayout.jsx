@@ -2,7 +2,6 @@ import React from "react";
 import DeliveryLogo from "../../components/DevliveryLogo/DelivaryLogo";
 import { Link, Outlet } from "react-router";
 import useRole from "../../hooks/useRole";
-import useAuth from "../../hooks/useAuth";
 
 const DashboardLayout = () => {
   const { role } = useRole()
@@ -52,7 +51,7 @@ const DashboardLayout = () => {
           <div className="min-h-full w-64 bg-base-200 flex flex-col">
             <ul className="menu w-full grow">
               <li>
-                <Link to={'my-profile'}>
+                <Link to={'/dashboard'}>
                   {/* Home icon */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +66,11 @@ const DashboardLayout = () => {
                     <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
                     <path d="M3 10a2 2 0 0 1 .7-1.5l7-6a2 2 0 0 1 2.6 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                   </svg>
-                  Profile
+                  Home Page
                 </Link>
+              </li>
+              <li>
+                <Link to={'my-profile'}>My Profile</Link>
               </li>
 
               <li>

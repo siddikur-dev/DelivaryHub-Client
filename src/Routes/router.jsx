@@ -25,6 +25,7 @@ import AssigneDelivery from "../Pages/Dashboard/AssigneDelivery/AssigneDelivery"
 import CompletedDelivery from "../Pages/Dashboard/CompletedDelivery/CompletedDelivery";
 import RiderRoutes from "./RiderRoutes";
 import ParcelTrack from "../Pages/ParcelTrack/ParcelTrack";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  // Auth 
   {
     path: "/auth",
     Component: AuthLayout,
@@ -89,6 +91,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  // Dashboard
   {
     path: "/dashboard",
     element: (
@@ -97,6 +100,10 @@ const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
+      {
+        index: true,
+        Component: DashboardHome,
+      },
       {
         path: "my-profile",
         Component: Profile,
