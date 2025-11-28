@@ -24,6 +24,7 @@ import AssignedRider from "../Pages/Dashboard/Assigned-Rider/AssignedRider";
 import AssigneDelivery from "../Pages/Dashboard/AssigneDelivery/AssigneDelivery";
 import CompletedDelivery from "../Pages/Dashboard/CompletedDelivery/CompletedDelivery";
 import RiderRoutes from "./RiderRoutes";
+import ParcelTrack from "../Pages/ParcelTrack/ParcelTrack";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
         path: "/coverage",
         loader: () => fetch("/data/serviceCenter.json"),
         Component: Coverage,
+      },
+      {
+        path: "/parcel-track/:trackingId",
+        Component: ParcelTrack,
       },
 
       {
@@ -128,7 +133,7 @@ const router = createBrowserRouter([
       {
         path: "completed-delivery",
         element: <RiderRoutes>
-          <CompletedDelivery/>
+          <CompletedDelivery />
         </RiderRoutes>
       },
       // admin only
