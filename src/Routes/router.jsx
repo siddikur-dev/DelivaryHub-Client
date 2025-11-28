@@ -101,6 +101,26 @@ const router = createBrowserRouter([
         path: "payment/:parcelId",
         Component: Payment,
       },
+
+      {
+        path: "payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "payment-cancelled",
+        Component: PaymentFailed,
+      },
+      {
+        path: "payment-history",
+        Component: PaymentHistory,
+      },
+
+      // rider only 
+      {
+        path: "assigned-delivery",
+        Component: AssignedRider,
+      },
+      // admin only
       {
         path: "users-management",
         element: <AdminRoutes>
@@ -118,18 +138,6 @@ const router = createBrowserRouter([
         element: <AdminRoutes>
           <ApproveRider />
         </AdminRoutes>
-      },
-      {
-        path: "payment-success",
-        Component: PaymentSuccess,
-      },
-      {
-        path: "payment-cancelled",
-        Component: PaymentFailed,
-      },
-      {
-        path: "payment-history",
-        Component: PaymentHistory,
       },
     ],
   },
