@@ -72,7 +72,7 @@ const ApproveRiders = () => {
                 <th>{index + 1}</th>
                 <td>{rider.name}</td>
                 <td>{rider.email}</td>
-                <td>{rider.riderDistrict}</td>
+                <td>{rider.riderDistrict || rider.district}</td>
                 <td>
                   <p
                     className={`${rider.status === "approved"
