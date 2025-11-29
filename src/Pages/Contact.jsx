@@ -97,9 +97,9 @@ const Contact = () => {
                                     <h3 className="text-lg font-semibold text-primary mb-1">Email Us</h3>
                                     <p className="text-accent mb-2">Send us a detailed message</p>
                                     <div className="space-y-1">
-                                        <p className="font-medium text-secondary">General: info@foodio.com</p>
-                                        <p className="font-medium text-secondary">Support: support@foodio.com</p>
-                                        <p className="font-medium text-secondary">Business: business@foodio.com</p>
+                                        <p className="font-medium text-secondary">General: info@Delivery Hub.com</p>
+                                        <p className="font-medium text-secondary">Support: support@Delivery Hub.com</p>
+                                        <p className="font-medium text-secondary">Business: business@Delivery Hub.com</p>
                                         <p className="text-sm text-accent">Response within 2-4 hours</p>
                                     </div>
                                 </div>

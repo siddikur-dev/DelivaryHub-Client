@@ -5,7 +5,7 @@ const ThemeToggle = () => {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
       // First check for saved theme
-      const savedTheme = localStorage.getItem('foodio-theme');
+      const savedTheme = localStorage.getItem('Delivery Hub-theme');
       if (savedTheme) {
         return savedTheme;
       }
@@ -22,7 +22,7 @@ const ThemeToggle = () => {
     document.body.removeAttribute('data-theme');
     document.body.setAttribute('data-theme', theme);
     document.body.style.colorScheme = theme;
-    localStorage.setItem('foodio-theme', theme);
+    localStorage.setItem('Delivery Hub-theme', theme);
   }, [theme]);
 
   // Listen for system theme changes
@@ -31,7 +31,7 @@ const ThemeToggle = () => {
     
     const handleSystemThemeChange = (e) => {
       // Only update if user hasn't manually set a theme
-      const savedTheme = localStorage.getItem('foodio-theme');
+      const savedTheme = localStorage.getItem('Delivery Hub-theme');
       if (!savedTheme) {
         setTheme(e.matches ? 'dark' : 'light');
       }

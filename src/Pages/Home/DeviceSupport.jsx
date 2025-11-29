@@ -7,9 +7,9 @@ const DeviceSupport = () => {
 
     const tabData = {
         mobile: {
-            title: 'Foodio On The Go',
+            title: 'Delivery Hub On The Go',
             description:
-                'Order, track, and enjoy your favorite meals anytime, anywhere with our mobile app. Available for both Android and iOS, Foodio puts deliciousness in your pocket.',
+                'Order, track, and enjoy your favorite meals anytime, anywhere with our mobile app. Available for both Android and iOS, Delivery Hub puts deliciousness in your pocket.',
             img: 'https://i.postimg.cc/XJThZn7r/mobile.png',
             details: [
                 'Push notifications for order updates',
@@ -22,20 +22,20 @@ const DeviceSupport = () => {
         tablet: {
             title: 'Tablet Experience',
             description:
-                'Enjoy Foodio on your tablet with a beautiful, responsive interface. Perfect for browsing menus, sharing with friends, and placing group orders from the comfort of your couch.',
+                'Enjoy Delivery Hub on your tablet with a beautiful, responsive interface. Perfect for browsing menus, sharing with friends, and placing group orders from the comfort of your couch.',
             img: 'https://i.postimg.cc/gJwQkxd9/tablet.png',
             details: [
                 'Split-screen menu and order view',
                 'Great for family or group ordering',
                 'Large, touch-friendly controls',
-                'Seamless syncing with your Foodio account',
+                'Seamless syncing with your Delivery Hub account',
                 'Perfect for home or office use',
             ],
         },
         desktop: {
             title: 'Full-Featured Web Platform',
             description:
-                'Access all Foodio features on your desktop or laptop. Manage your orders, explore trending foods, and enjoy a seamless experience on any browser.',
+                'Access all Delivery Hub features on your desktop or laptop. Manage your orders, explore trending foods, and enjoy a seamless experience on any browser.',
             img: 'https://i.postimg.cc/9fgshG6t/laptop.png',
             details: [
                 'Comprehensive dashboard for order management',
@@ -60,12 +60,12 @@ const DeviceSupport = () => {
             <div className="max-w-5xl mx-auto">
                 <Slide direction="right">
                     <h2 className="text-center text-3xl md:text-4xl font-bold text-primary mb-4">
-                    Foodio <span className="text-secondary border-b-2 border-secondary">Works Everywhere</span>
+                    Delivery Hub <span className="text-secondary border-b-2 border-secondary">Works Everywhere</span>
                 </h2>
                 </Slide>
                 <Slide direction="left">
                     <p className="text-center text-accent mb-10 max-w-2xl mx-auto">
-                    Enjoy Foodio on any device—mobile, tablet, or desktop. Seamlessly order, track, and manage your meals wherever you are!
+                    Enjoy Delivery Hub on any device—mobile, tablet, or desktop. Seamlessly order, track, and manage your meals wherever you are!
                 </p>
                 </Slide>
                 <div className="flex justify-center mb-8 md:mb-12">

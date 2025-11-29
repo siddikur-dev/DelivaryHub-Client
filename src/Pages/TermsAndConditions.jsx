@@ -30,7 +30,7 @@ const TermsAndConditions = () => {
                             Introduction
                         </h2>
                         <p className="text-accent leading-relaxed">
-                            Welcome to Foodio! These Terms and Conditions govern your use of our food delivery platform. 
+                            Welcome to Delivery Hub! These Terms and Conditions govern your use of our food delivery platform. 
                             By accessing or using our service, you agree to be bound by these terms. If you disagree with 
                             any part of these terms, please do not use our service.
                         </p>
@@ -41,7 +41,7 @@ const TermsAndConditions = () => {
                         <h2 className="text-2xl font-bold text-primary mb-4">Service Description</h2>
                         <div className="space-y-4 text-accent">
                             <p>
-                                Foodio is a food delivery platform that connects customers with local restaurants and food vendors. 
+                                Delivery Hub is a food delivery platform that connects customers with local restaurants and food vendors. 
                                 Our service allows you to:
                             </p>
                             <ul className="list-disc list-inside space-y-2 ml-4">
@@ -79,7 +79,7 @@ const TermsAndConditions = () => {
                             Ordering & Payment
                         </h2>
                         <div className="space-y-4 text-accent">
-                            <p>When placing orders through Foodio:</p>
+                            <p>When placing orders through Delivery Hub:</p>
                             <ul className="list-disc list-inside space-y-2 ml-4">
                                 <li>All prices are displayed in local currency and include applicable taxes</li>
                                 <li>Payment is processed securely through our payment partners</li>
@@ -166,7 +166,7 @@ const TermsAndConditions = () => {
                         <h2 className="text-2xl font-bold text-primary mb-4">Limitation of Liability</h2>
                         <div className="space-y-4 text-accent">
                             <p>
-                                Foodio's liability is limited to:
+                                Delivery Hub's liability is limited to:
                             </p>
                             <ul className="list-disc list-inside space-y-2 ml-4">
                                 <li>Direct damages up to the amount paid for the specific order</li>
@@ -196,8 +196,8 @@ const TermsAndConditions = () => {
                         <div className="space-y-4 text-accent">
                             <p>For questions about these terms, please contact us:</p>
                             <div className="bg-primary/5 rounded-lg p-4">
-                                <p className="font-medium">Foodio Support Team</p>
-                                <p>Email: support@foodio.com</p>
+                                <p className="font-medium">Delivery Hub Support Team</p>
+                                <p>Email: support@Delivery Hub.com</p>
                                 <p>Phone: +1 (555) 123-4567</p>
                                 <p>Hours: Monday - Friday, 9:00 AM - 6:00 PM EST</p>
                             </div>
@@ -209,12 +209,12 @@ const TermsAndConditions = () => {
                         <h2 className="text-2xl font-bold text-primary mb-4 text-center">Acceptance of Terms</h2>
                         <div className="text-center text-accent">
                             <p className="mb-4">
-                                By using Foodio's services, you acknowledge that you have read, understood, and agree to be 
+                                By using Delivery Hub's services, you acknowledge that you have read, understood, and agree to be 
                                 bound by these Terms and Conditions.
                             </p>
                             <div className="bg-base-100 rounded-lg p-4 inline-block">
                                 <p className="font-semibold text-primary">
-                                    🍽️ Thank you for choosing Foodio! 🍽️
+                                    🍽️ Thank you for choosing Delivery Hub! 🍽️
                                 </p>
                             </div>
                         </div>

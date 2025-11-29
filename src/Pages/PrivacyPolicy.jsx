@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
                             Introduction
                         </h2>
                         <p className="text-accent leading-relaxed">
-                            At Foodio, we are committed to protecting your privacy and ensuring the security of your personal information. 
+                            At Delivery Hub, we are committed to protecting your privacy and ensuring the security of your personal information. 
                             This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our 
                             food delivery platform. By using our service, you consent to the data practices described in this policy.
                         </p>
@@ -293,8 +293,8 @@ const PrivacyPolicy = () => {
                         <div className="space-y-4 text-accent">
                             <p>If you have questions about this Privacy Policy or our data practices, please contact us:</p>
                             <div className="bg-primary/5 rounded-lg p-4">
-                                <p className="font-medium">Foodio Privacy Team</p>
-                                <p>Email: privacy@foodio.com</p>
+                                <p className="font-medium">Delivery Hub Privacy Team</p>
+                                <p>Email: privacy@Delivery Hub.com</p>
                                 <p>Phone: +1 (555) 123-4567</p>
                                 <p>Address: 123 Food Street, Cuisine City, FC 12345</p>
                                 <p>Hours: Monday - Friday, 9:00 AM - 6:00 PM EST</p>
@@ -308,7 +308,7 @@ const PrivacyPolicy = () => {
                         <div className="text-center text-accent">
                             <p className="mb-4">
                                 We are committed to protecting your privacy and being transparent about how we handle your information. 
-                                Thank you for trusting Foodio with your personal data.
+                                Thank you for trusting Delivery Hub with your personal data.
                             </p>
                             <div className="bg-base-100 rounded-lg p-4 inline-block">
                                 <p className="font-semibold text-primary">
