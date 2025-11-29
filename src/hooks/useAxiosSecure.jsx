@@ -2,7 +2,7 @@ import axios from "axios";
 import useAuth from "./useAuth";
 import Swal from "sweetalert2";
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: import.meta.env.VITE_server_api,
 });
 
 const useAxiosSecure = () => {
