@@ -21,7 +21,7 @@ const SendParcel = () => {
     const isSameDistrict = data.senderDistrict === data.receiverDistrict;
     const parcelWeight = parseFloat(data.parcelWeight);
     const isDocument = data.parcelType == "document";
-    console.log(data);
+    // console.log(data);
     let cost = 0;
 
     if (isDocument) {
@@ -56,7 +56,7 @@ const SendParcel = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.post("/parcels", data).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
         });
         Swal.fire({
           title: "Pay!",

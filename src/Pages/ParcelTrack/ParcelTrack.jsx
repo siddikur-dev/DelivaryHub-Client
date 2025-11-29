@@ -14,7 +14,7 @@ const ParcelTrack = () => {
         }
     })
 
-console.log(trackings);
+// console.log(trackings);
     return (
         <div>
             parcel track :{trackingId}

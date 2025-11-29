@@ -35,7 +35,7 @@ const Register = () => {
         };
         //update user profile info in the firebase
         const userRes = await axiosInstance.post("/users", userInfo);
-        console.log(userRes);
+        // console.log(userRes);
         updateUser({ displayName: data.name, photoURL: profilePic })
           .then(() => {
             Swal.fire({
@@ -60,7 +60,7 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         // create user in the database
         const userInfo = {
@@ -70,7 +70,7 @@ const Register = () => {
         };
 
         axiosInstance.post("/users", userInfo).then((res) => {
-          console.log("user data has been stored", res.data);
+          // console.log("user data has been stored", res.data);
           navigate(location.state || "/");
         });
       })

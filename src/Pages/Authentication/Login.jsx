@@ -54,7 +54,7 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         // create user in the database
         const userInfo = {
@@ -64,7 +64,7 @@ const Login = () => {
         };
 
         axiosInstance.post("/users", userInfo).then((res) => {
-          console.log("user data has been stored", res.data);
+          // console.log("user data has been stored", res.data);
           navigate(location.state || "/");
         });
       })
