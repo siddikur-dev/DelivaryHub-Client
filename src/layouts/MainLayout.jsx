@@ -1,7 +1,7 @@
 
 import { Outlet } from 'react-router';
-import NavBar from '../pages/shared/NavBar';
-import Footer from '../pages/shared/Footer';
+import NavBar from '../Pages/shared/NavBar';
+import Footer from '../Pages/shared/Footer';
 
 const MainLayout = () => {
     return (

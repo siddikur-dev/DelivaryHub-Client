@@ -1,61 +1,39 @@
-# Zap Shift Resources
+Pro Fast Service - Version 1.0
+ProFast is Modern parcel delivery web application built with React and Vite.
 
-Welcome to **Zap Shift Resources**!  
-A curated collection of tools, guides, and assets for developing robust parcel management systems.
-
----
-
-## 📊 System Overview Table
-
-| Role            | Key Responsibilities                                                                      | Earnings/Benefits                              |
-| --------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **User**        | - Book parcels<br>- Pay charges<br>- Track status<br>- Review service                     | - Real-time tracking<br>- Feedback opportunity |
-| **Admin**       | - Assign agents<br>- Manage routing<br>- Oversee warehouses<br>- Monitor operations       | - System control<br>- Operational oversight    |
-| **Agent/Rider** | - Collect/Deliver parcels<br>- Update status<br>- OTP confirmation<br>- Warehouse handoff | - ৳20 per delivery                             |
-
----
-
-## 🛒 Pricing Structure
-
-| Parcel Type      | Weight    | Within City | Outside City/District |
-| ---------------- | --------- | ----------- | --------------------- |
-| **Document**     | Any       | ৳60         | ৳80                   |
-| **Non-Document** | Up to 3kg | ৳110        | ৳150                  |
-| **Non-Document** | >3kg      | +৳40/kg     | +৳40/kg +৳40 extra    |
-
----
-
-## 🚚 Delivery Workflow
-
-```mermaid
-flowchart TD
-    A[User Adds Parcel to System] -->|Status: Unpaid| B[User Pays for Parcel Delivery]
-    B -->|Status: Paid| C[Admin Assigns Pickup & Delivery Riders]
-    C -->|Status: Ready-to-Pickup| D[Rider Picks Up Parcel]
-    D -->|Status: In-Transit| E{Within City?}
-
-    E -- Yes --> F1[Rider Out for Delivery]
-    F1 -->|Status: Ready-for-Delivery| G1[Rider Delivers Parcel]
-    G1 -->|Status: Delivered| H1[Parcel Delivery Completed]
-
-    E -- No --> F2[Parcel Reaches Warehouse]
-    F2 -->|Status: Reached-Warehouse| G2[Parcel Shipped to Destination]
-    G2 -->|Status: Shipped| H2[Rider Out for Delivery]
-    H2 -->|Status: Ready-for-Delivery| I2[Rider Delivers Parcel]
-    I2 -->|Status: Delivered| J2[Parcel Delivery Completed]
-
+Features
+* Send parcels easily with a user-friendly form
+* Live parcel tracking
+* Bangladesh map with service coverage
+* Merchant and customer dashboard (only visible when logged in)
+* 24/7 call center support
+* Secure authentication (login/register)
+* Fully responsive design for all devices
+Tech Stack
+React
+Vite
+Tailwind CSS
+React Hook Form
+SweetAlert2
+Leaflet (for map)
+React Router
+Getting Started
+1. Clone the repository:
+```bash
+git clone https://github.com/siddikur-dev/DelivaryHub-Client.git
+cd DeliveryHub-Client
 ```
 
----
+2. Install dependencies:
+```bash
+npm install
+```
+3. Run the development server:
+```bash
+npm run dev
+```
+Open http://localhost:5173 in your browser.
+Contributing
+We welcome contributions! Please read our contributing guidelines before getting started.
 
-## 🗂️ Key Features
-
-- **Automated Pricing & Tracking**
-- **Role-based Access & Workflow**
-- **OTP-based Secure Delivery**
-- **Nationwide Coverage (64 districts)**
-- **Transparent Commission Structure**
-
----
-
----
+Made with ❤️ by Siddikur Rahman

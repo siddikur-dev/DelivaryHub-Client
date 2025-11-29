@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
-import ErrorPage from "../pages/ErrorPage";
+import ErrorPage from '../Pages/ErrorPage'
 import Login from "../Pages/Authentication/Login";
-import MyProfile from "../pages/MyProfile";
+import MyProfile from "../Pages/MyProfile";
 import PrivateRoutes from "./PrivateRoutes";
 import Home from "../Pages/Home/Home";
 import Coverage from "../Pages/Coverage/Coverage";
